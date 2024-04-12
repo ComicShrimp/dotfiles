@@ -8,11 +8,12 @@
 - Nvim
   - ripgrep
 - Alacritty
+- Starship
 
 You can use the following command to install the requirements on Arch Linux
 
 ```shell
-pacman -S stow git zsh nvim alacritty ripgrep
+pacman -S stow git zsh nvim alacritty ripgrep starship
 ```
 
 
