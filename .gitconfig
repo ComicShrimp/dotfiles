@@ -1,0 +1,21 @@
+[user]
+  name = Mário Victor Ribeiro Silva
+  email = mariovictorrs@gmail.com
+
+[init]
+    defaultBranch = main
+
+[core]
+	editor = nvim
+
+[pull]
+  rebase = true
+
+[fetch]
+  prune = true
+
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
