@@ -25,3 +25,9 @@ Clone this repo in the `home` (`$HOME`) directory and run the following command 
 stow .
 ```
 
+## Set Zsh as default shell
+
+```shell
+chsh -s $(which zsh)
+```
+
