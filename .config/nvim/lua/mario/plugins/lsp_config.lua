@@ -14,7 +14,7 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     config = function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- Packages Setup
 
@@ -51,14 +51,13 @@ return {
         "ruff",
         "pyright",
         -- Lua
-        "luacheck",
         "stylua",
         -- Others
         "marksman", -- Markdown
       }
 
       -- Mason Setup
-      require('mason').setup()
+      require("mason").setup()
 
       local mr = require("mason-registry")
 
@@ -70,16 +69,13 @@ return {
           end
         end
       end
-      if mr.refresh then
-        mr.refresh(ensure_installed)
-      else
-        ensure_installed()
-      end
+
+      ensure_installed()
 
       -- Mason LSP Config Setup
 
-      require('mason-lspconfig').setup({
-          ensure_installed = lsp_to_install,
+      require("mason-lspconfig").setup({
+        ensure_installed = lsp_to_install,
       })
 
       local lspconfig = require("lspconfig")
@@ -91,7 +87,7 @@ return {
       end
 
       -- Special configuration for some LSP servers
-      require('lspconfig').pyright.setup {
+      require("lspconfig").pyright.setup({
         settings = {
           pyright = {
             -- Using Ruff's import organizer
@@ -100,11 +96,11 @@ return {
           python = {
             analysis = {
               -- Ignore all files for analysis to exclusively use Ruff for linting
-              ignore = { '*' },
+              ignore = { "*" },
             },
           },
         },
-      }
+      })
 
       require("lspconfig").tsserver.setup({
         capabilities = capabilities,
