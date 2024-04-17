@@ -16,19 +16,19 @@ return {
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      local servers = {
+      -- Packages Setup
+
+      -- LSP servers to install and configure
+      local lsp_to_install = {
         -- Javascript/Typescript
         "eslint",
         "tsserver",
         "tailwindcss",
-        -- "prettier", disabled because it dont have an entry in mason-lspconfig.nvim. Must be installed manually
         -- Rust
         "rust_analyzer",
         -- Lua
         "lua_ls",
-        -- "luacheck", disabled because it dont have an entry in mason-lspconfig.nvim. Must be installed manually
         -- Python
-        -- "mypy", disabled because it dont have an entry in mason-lspconfig.nvim. Must be installed manually
         "pyright",
         -- "ruff",
         "ruff_lsp",
@@ -41,14 +41,50 @@ return {
         "jsonls",
       }
 
+      -- Packages to install
+      local mason_tools = {
+        -- JS/TS
+        "eslint_d",
+        "prettier",
+        -- Python
+        "mypy",
+        "ruff",
+        "pyright",
+        -- Lua
+        "luacheck",
+        "stylua",
+        -- Others
+        "marksman", -- Markdown
+      }
+
+      -- Mason Setup
       require('mason').setup()
+
+      local mr = require("mason-registry")
+
+      local function ensure_installed()
+        for _, tool in ipairs(mason_tools) do
+          local p = mr.get_package(tool)
+          if not p:is_installed() then
+            p:install()
+          end
+        end
+      end
+      if mr.refresh then
+        mr.refresh(ensure_installed)
+      else
+        ensure_installed()
+      end
+
+      -- Mason LSP Config Setup
+
       require('mason-lspconfig').setup({
-          ensure_installed = servers,
+          ensure_installed = lsp_to_install,
       })
 
       local lspconfig = require("lspconfig")
 
-      for _, lsp in ipairs(servers) do
+      for _, lsp in ipairs(lsp_to_install) do
         lspconfig[lsp].setup({
           capabilities = capabilities,
         })

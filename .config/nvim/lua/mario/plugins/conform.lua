@@ -7,8 +7,8 @@ return {
       formatters_by_ft = {
         javascript = { { "eslint_d", "prettier" } },
         typescript = { { "eslint_d", "prettier" } },
-        javascriptreact = { "prettierd" },
-        typescriptreact = { "prettierd" },
+        javascriptreact = { "prettier" },
+        typescriptreact = { "prettier" },
         css = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
