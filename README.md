@@ -12,19 +12,20 @@
 - unzip
 - Lazygit
 - Tmux
+- fzf
 
 You can use the following command to install the requirements
 
 ### Arch Linux
 
 ```shell
-pacman -S stow git zsh neovim alacritty ripgrep starship unzip lazygit tmux
+pacman -S stow git zsh neovim alacritty ripgrep starship unzip lazygit tmux fzf
 ```
 
 ### Homebrew
 
 ```shell
-brew install stow git zsh nvim alacritty ripgrep starship unzip lazygit tmux
+brew install stow git zsh nvim alacritty ripgrep starship unzip lazygit tmux fzf
 ```
 
 ## Instalation
