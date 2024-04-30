@@ -18,6 +18,9 @@ setopt share_history          # share command history data
 # Load aliases
 source $HOME/.config/aliases/aliases.sh
 
+# Load profile config
+source $HOME/.profile
+
 # Zsh configuration (Zinit and starship)
 autoload -Uz compinit && compinit
 source $HOME/.config/zinit/zinit.zsh
