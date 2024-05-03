@@ -10,14 +10,20 @@ commands=(
   "stow"
 )
 
-selected=$({ printf "%s\n" "${langs[@]}"; printf "%s\n" "${commands[@]}"; } | fzf)
-read -p "Enter Query: " query
+selected=$({ printf "%s\n" "${langs[@]}"; printf "%s\n" "${commands[@]}"; } | fzf --reverse)
+read -p "Query($selected): " query
+
+# Change " " for "+"
+query=`echo $query | tr ' ' '+'`
 
 if [[ $langs == $selected ]]; then
-  echo "You selected a language"
+  curl -s "cht.sh/$selected/$query" | bat
 elif [[ $commands == $selected ]]; then
-  echo "You selected a command"
+  curl -s "cht.sh/$selected~$query" | bat
+else
+  echo `"$selected" is not defined in any list!`
+  echo `  Please use "curl cht.sh/$selected/$query" if it is a language`
+  echo `  Or use "curl cht.sh/$selected~$query" if it is a tool`
 fi
 
-echo "Hello World!" | bat
-while [ : ]; do sleep 1; done
+# while [ : ]; do sleep 1; done
