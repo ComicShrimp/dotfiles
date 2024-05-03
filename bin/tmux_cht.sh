@@ -1,29 +1,23 @@
 #!/bin/sh
 
-langs=(
-  "python"
-  "rust"
-)
+LANGS_FILE=$HOME/bin/tmux_cht_sh/langs
+COMMANDS_FILE=$HOME/bin/tmux_cht_sh/commands
 
-commands=(
-  "git"
-  "stow"
-)
+selected=$(cat $LANGS_FILE $COMMANDS_FILE | fzf --reverse)
 
-selected=$({ printf "%s\n" "${langs[@]}"; printf "%s\n" "${commands[@]}"; } | fzf --reverse)
-read -p "Query($selected): " query
+read -p "Query(${selected}): " query
 
 # Change " " for "+"
 query=`echo $query | tr ' ' '+'`
 
-if [[ $langs == $selected ]]; then
-  curl -s "cht.sh/$selected/$query" | bat
-elif [[ $commands == $selected ]]; then
-  curl -s "cht.sh/$selected~$query" | bat
+if grep -qs "$selected" "$LANGS_FILE"; then
+  curl -s "cht.sh/${selected}/${query}" | bat
+elif grep -qs "$selected" "$COMMANDS_FILE"; then
+  curl -s "cht.sh/${selected}~${query}" | bat
 else
-  echo `"$selected" is not defined in any list!`
-  echo `  Please use "curl cht.sh/$selected/$query" if it is a language`
-  echo `  Or use "curl cht.sh/$selected~$query" if it is a tool`
-fi
+  echo "'${selected}' is not defined in any list!"
+  echo "  Please use 'curl cht.sh/${selected}/${query}' if it is a language"
+  echo "  Or use 'curl cht.sh/${selected}~${query}' if it is a tool"
 
-# while [ : ]; do sleep 1; done
+  while [ : ]; do sleep 1; done
+fi
