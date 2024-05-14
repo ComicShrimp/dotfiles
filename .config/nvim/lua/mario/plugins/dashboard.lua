@@ -4,15 +4,43 @@ return {
     local opts = {
       theme = "doom",
       config = {
-        -- stylua: ignore
         center = {
-          { action = require("telescope.builtin").find_files,                                    desc = " Find File",       icon = " ", key = "f" },
-          { action = "ene | startinsert",                                        desc = " New File",        icon = " ", key = "n" },
-          { action = "Telescope oldfiles",                                       desc = " Recent Files",    icon = " ", key = "r" },
-          { action = "Telescope live_grep",                                      desc = " Find Text",       icon = " ", key = "g" },
-          { action = 'lua require("persistence").load()',                        desc = " Restore Session", icon = " ", key = "s" },
-          { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
-          { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
+          {
+            action = require("telescope.builtin").find_files,
+            desc = " Find File",
+            icon = " ",
+            key = "f",
+          },
+          {
+            action = "ene | startinsert",
+            desc = " New File",
+            icon = " ",
+            key = "n",
+          },
+          {
+            action = "Telescope oldfiles",
+            desc = " Recent Files",
+            icon = " ",
+            key = "r",
+          },
+          {
+            action = "Telescope live_grep",
+            desc = " Find Text",
+            icon = " ",
+            key = "g",
+          },
+          {
+            action = "Lazy",
+            desc = " Lazy",
+            icon = "󰒲 ",
+            key = "l",
+          },
+          {
+            action = "qa",
+            desc = " Quit",
+            icon = " ",
+            key = "q",
+          },
         },
         footer = function()
           local stats = require("lazy").stats()
