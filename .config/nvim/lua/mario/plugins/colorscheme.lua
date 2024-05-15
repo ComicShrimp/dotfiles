@@ -32,6 +32,7 @@ return {
         treesitter = true,
         treesitter_context = true,
         which_key = true,
+        harpoon = true,
       },
     },
   },
