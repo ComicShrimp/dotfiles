@@ -16,7 +16,6 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
@@ -36,5 +35,20 @@ vim.opt.updatetime = 50
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
+-- Setup autor read for files
+vim.opt.autoread = true
+
 -- Sync clipboard between OS and Neovim.
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
+
+-- Set backspace behavior
+vim.opt.backspace = { "indent", "eol", "start" }
+vim.opt.listchars = {
+  tab = "→ ", -- Tab character
+  trail = "•", -- Trailing whitespace
+  extends = "…", -- Lines that extend past the window
+  precedes = "…", -- Lines that precede the start of the window
+  nbsp = "•", -- Non-breaking spaces
+  eol = "↲",
+  space = "·",
+}
