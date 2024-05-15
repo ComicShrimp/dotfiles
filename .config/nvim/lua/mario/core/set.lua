@@ -8,6 +8,7 @@ vim.opt.expandtab = true
 
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+vim.opt.smartcase = true -- Don't ignore case with capitals
 
 vim.opt.wrap = false
 
@@ -52,3 +53,6 @@ vim.opt.listchars = {
   eol = "↲",
   space = "·",
 }
+
+-- Completition
+vim.opt.completeopt = "menu,menuone"
