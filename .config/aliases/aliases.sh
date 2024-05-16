@@ -12,3 +12,12 @@ alias paruu="paru -Syu" # Update system
 
 alias yayi="yay -S"   # Install package
 alias yayu="yay -Syu" # Update system
+
+# Flatpak
+alias fpu="flatpak update"
+
+# Git
+alias ga="git add"
+alias gc="git commit"
+alias gpl="git pull"
+alias gph="git push"
