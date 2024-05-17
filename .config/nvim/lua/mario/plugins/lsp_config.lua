@@ -15,30 +15,51 @@ return {
     lazy = false,
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local default_lsp_setup = {
+        capabilities,
+      }
 
       -- Packages Setup
 
       -- LSP servers to install and configure
       local lsp_to_install = {
         -- Javascript/Typescript
-        "eslint",
-        "tsserver",
-        "tailwindcss",
+        eslint = default_lsp_setup,
+        tsserver = {
+          capabilities = capabilities,
+          on_attach = function(client)
+            client.server_capabilities.document_formatting = false
+          end,
+        },
+        tailwindcss = default_lsp_setup,
         -- Rust
-        "rust_analyzer",
+        rust_analyzer = default_lsp_setup,
         -- Lua
-        "lua_ls",
+        lua_ls = default_lsp_setup,
         -- Python
-        "pyright",
+        pyright = {
+          settings = {
+            pyright = {
+              -- Using Ruff's import organizer
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                -- Ignore all files for analysis to exclusively use Ruff for linting
+                ignore = { "*" },
+              },
+            },
+          },
+        },
         -- "ruff",
-        "ruff_lsp",
+        ruff_lsp = default_lsp_setup,
         -- Docker
-        "dockerls",
-        "docker_compose_language_service",
+        dockerls = default_lsp_setup,
+        docker_compose_language_service = default_lsp_setup,
         -- Vue
-        "vuels",
+        vuels = default_lsp_setup,
         -- Others
-        "jsonls",
+        jsonls = default_lsp_setup,
       }
 
       -- Packages to install
@@ -80,34 +101,10 @@ return {
 
       local lspconfig = require("lspconfig")
 
-      for _, lsp in ipairs(lsp_to_install) do
-        lspconfig[lsp].setup({
-          capabilities = capabilities,
-        })
+      for lsp, config_setup in ipairs(lsp_to_install) do
+        print("Configuring: " .. lsp .. " " .. config_setup)
+        lspconfig[lsp].setup(config_setup)
       end
-
-      -- Special configuration for some LSP servers
-      require("lspconfig").pyright.setup({
-        settings = {
-          pyright = {
-            -- Using Ruff's import organizer
-            disableOrganizeImports = true,
-          },
-          python = {
-            analysis = {
-              -- Ignore all files for analysis to exclusively use Ruff for linting
-              ignore = { "*" },
-            },
-          },
-        },
-      })
-
-      require("lspconfig").tsserver.setup({
-        capabilities = capabilities,
-        on_attach = function(client)
-          client.server_capabilities.document_formatting = false
-        end,
-      })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Goto definition" })
