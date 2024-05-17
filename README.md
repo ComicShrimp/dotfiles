@@ -42,3 +42,9 @@ stow .
 ```shell
 chsh -s $(which zsh)
 ```
+
+---
+
+### Sources/Inspirations
+
+- Code folding for nvim: https://essais.co/better-folding-in-neovim/
