@@ -1,2 +1,3 @@
 # Make sure to always use a pager
 --paging=always
+--theme="Catppuccin Mocha"
