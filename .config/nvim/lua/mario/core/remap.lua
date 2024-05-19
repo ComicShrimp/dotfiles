@@ -7,3 +7,10 @@ vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>", { desc = "Open Neotree left"
 -- QOL keymaps
 vim.keymap.set("n", "<C-f>", ":noh<CR>", { desc = "Remove highligth after search", silent = true })
 vim.keymap.set("n", "<leader>s", ":set list!<CR>", { desc = "Show hidden chars", silent = true })
+
+-- Inlay hints
+if vim.lsp.inlay_hint then
+  vim.keymap.set("n", "<leader>ih", function()
+    vim.lsp.inlay_hint(0, nil)
+  end, { desc = "Toggle Inlay Hints" })
+end

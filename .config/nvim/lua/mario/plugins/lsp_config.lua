@@ -35,7 +35,14 @@ return {
         -- Rust
         rust_analyzer = default_lsp_setup,
         -- Lua
-        lua_ls = default_lsp_setup,
+        lua_ls = {
+          capabilities,
+          Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+            hint = { enable = true },
+          },
+        },
         -- Python
         pyright = {
           settings = {
@@ -101,8 +108,7 @@ return {
 
       local lspconfig = require("lspconfig")
 
-      for lsp, config_setup in ipairs(lsp_to_install) do
-        print("Configuring: " .. lsp .. " " .. config_setup)
+      for lsp, config_setup in pairs(lsp_to_install) do
         lspconfig[lsp].setup(config_setup)
       end
 
