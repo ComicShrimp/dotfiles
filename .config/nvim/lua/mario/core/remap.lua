@@ -11,6 +11,6 @@ vim.keymap.set("n", "<leader>s", ":set list!<CR>", { desc = "Show hidden chars",
 -- Inlay hints
 if vim.lsp.inlay_hint then
   vim.keymap.set("n", "<leader>ih", function()
-    vim.lsp.inlay_hint(0, nil)
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   end, { desc = "Toggle Inlay Hints" })
 end

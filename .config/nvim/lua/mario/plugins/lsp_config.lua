@@ -37,10 +37,10 @@ return {
         -- Lua
         lua_ls = {
           capabilities,
-          Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-            hint = { enable = true },
+          settings = {
+            Lua = {
+              hint = { enable = true },
+            },
           },
         },
         -- Python
