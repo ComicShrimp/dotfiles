@@ -30,6 +30,18 @@ return {
           on_attach = function(client)
             client.server_capabilities.document_formatting = false
           end,
+          init_options = {
+            preferences = {
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+          },
         },
         tailwindcss = default_lsp_setup,
         -- Rust
