@@ -112,10 +112,18 @@ return {
 
       ensure_installed()
 
+      local function getKeys(tbl)
+        local keys = {}
+        for key, _ in pairs(tbl) do
+          table.insert(keys, key)
+        end
+        return keys
+      end
+
       -- Mason LSP Config Setup
 
       require("mason-lspconfig").setup({
-        ensure_installed = lsp_to_install,
+        ensure_installed = getKeys(lsp_to_install),
       })
 
       local lspconfig = require("lspconfig")
