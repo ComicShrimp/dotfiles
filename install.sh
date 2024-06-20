@@ -17,3 +17,5 @@ else
     echo "Unknown operating system."
 fi
 
+# Add new themes to bat
+bat cache --build

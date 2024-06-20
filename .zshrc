@@ -27,7 +27,8 @@ source $HOME/.config/zinit/zinit.zsh
 eval "$(starship init zsh)"
 
 # Commands config
-export FZF_DEFAULT_OPTS="--tmux 90% --layout reverse --border --preview 'bat --color=always {}' \
+export FZF_DEFAULT_OPTS="--tmux 90% --layout reverse --border --preview \
+'bat --style numbers,changes --color=always {}' \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
