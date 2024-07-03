@@ -28,6 +28,10 @@ vim.opt.isfname:append("@-@")
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
 vim.opt.hlsearch = true
+
+vim.opt.ignorecase = true -- Ignore case when searching...
+vim.opt.smartcase = true -- ... unless there is a capital letter in the query
+
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
@@ -38,6 +42,9 @@ vim.opt.showmode = false
 
 -- Setup autor read for files
 vim.opt.autoread = true
+
+-- Update the title of the window depending on what's currently going on
+vim.opt.title = true
 
 -- Sync clipboard between OS and Neovim.
 -- vim.opt.clipboard = "unnamedplus"
