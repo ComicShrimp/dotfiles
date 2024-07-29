@@ -5,8 +5,8 @@ return {
 
     conform.setup({
       formatters_by_ft = {
-        javascript = { { "eslint_d", "prettier" } },
-        typescript = { { "eslint_d", "prettier" } },
+        javascript = { "eslint_d", "prettier", stop_after_first = true },
+        typescript = { "eslint_d", "prettier", stop_after_first = true },
         javascriptreact = { "prettier" },
         typescriptreact = { "prettier" },
         css = { "prettier" },
@@ -20,7 +20,7 @@ return {
         python = { "ruff_fix", "ruff_format" },
       },
       format_on_save = {
-        lsp_fallback = true,
+        lsp_format = "fallback",
         async = false,
         timeout_ms = 1000,
       },
@@ -28,7 +28,7 @@ return {
 
     vim.keymap.set("n", "<leader>gf", function()
       conform.format({
-        lsp_fallback = true,
+        lsp_format = "fallback",
         async = false,
         timeout_ms = 1000,
       })
