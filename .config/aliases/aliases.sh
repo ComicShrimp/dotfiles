@@ -19,5 +19,6 @@ alias fpu="flatpak update"
 # Git
 alias ga="git add"
 alias gc="git commit"
+alias gr="git restore"
 alias gpl="git pull"
 alias gph="git push"
