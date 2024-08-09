@@ -28,3 +28,6 @@ eval "$(starship init zsh)"
 
 # Commands config
 export FZF_DEFAULT_OPTS="--tmux 90% --layout reverse --border"
+
+# MacOS config directory
+export XDG_CONFIG_HOME="$HOME/.config"
