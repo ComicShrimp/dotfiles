@@ -22,3 +22,6 @@ alias gc="git commit"
 alias gr="git restore"
 alias gpl="git pull"
 alias gph="git push"
+
+# Lazygit
+alias lg="lazygit"
