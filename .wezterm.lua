@@ -15,9 +15,14 @@ config.native_macos_fullscreen_mode = true
 config.window_decorations = "RESIZE"
 
 -- Start in fullscreen
+-- wezterm.on("gui-startup", function(cmd)
+--   local _, _, window = mux.spawn_window(cmd or {})
+--   window:gui_window():toggle_fullscreen()
+-- end)
+
 wezterm.on("gui-startup", function(cmd)
   local _, _, window = mux.spawn_window(cmd or {})
-  window:gui_window():toggle_fullscreen()
+  window:gui_window():maximize()
 end)
 
 -- and finally, return the configuration to wezterm
