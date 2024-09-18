@@ -25,7 +25,7 @@ return {
       local lsp_to_install = {
         -- Javascript/Typescript
         eslint = default_lsp_setup,
-        tsserver = {
+        ts_ls = {
           capabilities = capabilities,
           on_attach = function(client)
             client.server_capabilities.document_formatting = false
