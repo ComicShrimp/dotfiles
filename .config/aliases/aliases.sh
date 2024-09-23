@@ -24,4 +24,8 @@ alias gpl="git pull"
 alias gph="git push"
 
 # Lazygit
+
 alias lg="lazygit"
+
+# Tmux
+alias tm="tmux a || tmux new -s Main"
