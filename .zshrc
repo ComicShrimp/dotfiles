@@ -21,6 +21,9 @@ source $HOME/.config/aliases/aliases.sh
 # Load profile config
 source $HOME/.profile
 
+# Load fzf keybindings
+source <(fzf --zsh)
+
 # Zsh configuration (Zinit and starship)
 autoload -Uz compinit && compinit
 source $HOME/.config/zinit/zinit.zsh
