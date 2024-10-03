@@ -25,3 +25,6 @@ _darcs
 \.stylua.toml
 install.sh
 /scripts
+
+# Mac OS
+.DS_Store
