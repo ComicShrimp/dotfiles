@@ -1,1 +1,5 @@
+# Mac OS files
 .DS_store
+
+# Common dev files
+.env
