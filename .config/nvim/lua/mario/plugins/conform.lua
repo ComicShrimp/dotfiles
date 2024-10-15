@@ -16,6 +16,7 @@ return {
         graphql = { "prettier" },
         liquid = { "prettier" },
         lua = { "stylua" },
+        go = { "gofumpt", "goimports_reviser", "golines" },
         python = { "ruff_fix", "ruff_format" },
       },
       format_on_save = {

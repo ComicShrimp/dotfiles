@@ -70,6 +70,8 @@ return {
             },
           },
         },
+        -- Go
+        gopls = default_lsp_setup,
         -- "ruff",
         ruff_lsp = default_lsp_setup,
         -- Docker
@@ -90,6 +92,10 @@ return {
         "mypy",
         "ruff",
         "pyright",
+        -- Go
+        "gofumpt",
+        "goimports-reviser",
+        "golines",
         -- Lua
         "stylua",
         -- Others
