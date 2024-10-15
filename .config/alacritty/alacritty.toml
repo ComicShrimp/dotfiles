@@ -12,7 +12,7 @@ live_config_reload = true
 TERM = "xterm-256color"
 
 [window]
-decorations = "Full"
+decorations = "None"
 dynamic_padding = true
 startup_mode = "Maximized"
 
