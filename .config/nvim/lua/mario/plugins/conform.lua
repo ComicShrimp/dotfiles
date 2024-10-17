@@ -4,6 +4,7 @@ return {
     local conform = require("conform")
 
     conform.setup({
+      log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
         javascript = { "eslint_d", "prettier", stop_after_first = true },
         typescript = { "eslint_d", "prettier", stop_after_first = true },
@@ -16,7 +17,7 @@ return {
         graphql = { "prettier" },
         liquid = { "prettier" },
         lua = { "stylua" },
-        go = { "gofumpt", "goimports_reviser", "golines" },
+        go = { "gofumpt", "goimports-reviser", "golines" },
         python = { "ruff_fix", "ruff_format" },
       },
       format_on_save = {
