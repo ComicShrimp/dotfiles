@@ -1,3 +1,6 @@
+# Core | Alias to core commands
+alias ls='ls --color'
+
 # Pacman
 
 alias paci="sudo pacman -S"   # Install package
