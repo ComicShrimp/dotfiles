@@ -47,4 +47,5 @@ chsh -s $(which zsh)
 
 ### Sources/Inspirations
 
-- Code folding for nvim: https://essais.co/better-folding-in-neovim/
+- Code folding for Nvim: https://essais.co/better-folding-in-neovim/
+- Lots of snippets and configs: http://www.lazyvim.org/
