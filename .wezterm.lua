@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local mux = wezterm.mux
 
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "tokyonight_night"
 
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 16
