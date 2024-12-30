@@ -72,8 +72,6 @@ return {
         },
         -- Go
         gopls = default_lsp_setup,
-        -- "ruff",
-        ruff_lsp = default_lsp_setup,
         -- Docker
         dockerls = default_lsp_setup,
         docker_compose_language_service = default_lsp_setup,
