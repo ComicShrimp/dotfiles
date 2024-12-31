@@ -13,10 +13,22 @@ return {
   {
     "neovim/nvim-lspconfig",
     lazy = false,
+    dependencies = {
+      "saghen/blink.cmp",
+      {
+        "folke/lazydev.nvim",
+        opts = {
+          library = {
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          },
+        },
+      },
+    },
     config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      -- Enable code completion
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
       local default_lsp_setup = {
-        capabilities,
+        capabilities = capabilities,
       }
 
       -- Packages Setup
@@ -72,6 +84,7 @@ return {
         },
         -- Go
         gopls = default_lsp_setup,
+        zls = default_lsp_setup,
         -- Docker
         dockerls = default_lsp_setup,
         docker_compose_language_service = default_lsp_setup,
