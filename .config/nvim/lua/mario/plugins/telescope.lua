@@ -23,6 +23,7 @@ return {
         defaults = {
           -- `hidden = true` is not supported in text grep commands.
           vimgrep_arguments = vimgrep_arguments,
+          path_display = { "smart" },
         },
         pickers = {
           find_files = {
@@ -30,25 +31,19 @@ return {
             find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
           },
         },
+        extensions = {
+          fzf = {},
+        },
       })
 
-      telescope.setup({
-        defaults = {
-          path_display = { "smart" },
-        },
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown({}),
-          },
-        },
-      })
+      require("telescope").load_extension("fzf")
 
       local builtin = require("telescope.builtin")
 
-      vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Find files" })
-      vim.keymap.set("n", "<leader>pg", builtin.git_files, { desc = "Find git files" })
-      vim.keymap.set("n", "<leader>ps", builtin.live_grep, { desc = "Find string in files" })
-      vim.keymap.set("n", "<leader>pr", builtin.lsp_references, { desc = "Find references" })
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+      vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Find git files" })
+      vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Find string in files" })
+      vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "Find references" })
       vim.keymap.set("n", "<leader>cd", builtin.diagnostics, { desc = "Code diagnostics" })
 
       require("telescope").load_extension("ui-select")
