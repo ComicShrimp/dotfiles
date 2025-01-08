@@ -5,10 +5,21 @@ return {
   opts = {
     bigfile = { enabled = true },
     lazygit = { enabled = true },
+    indent = {
+      animate = {
+        enabled = false,
+      },
+    },
+    dashboard = { enabled = true },
+    -- statuscolumn = { enabled = true },
   },
-  config = function()
-    vim.keymap.set("n", "<leader>lg", function()
-      Snacks.lazygit()
-    end, { desc = "Open Lazygit" })
-  end,
+  keys = {
+    {
+      "<leader>lg",
+      function()
+        Snacks.lazygit()
+      end,
+      desc = "Open Lazygit",
+    },
+  },
 }
