@@ -21,6 +21,10 @@ return {
 
       telescope.setup({
         defaults = {
+          mappings = {
+            n = { ["<C-t>"] = require("trouble.sources.telescope").open },
+            i = { ["<C-t>"] = require("trouble.sources.telescope").open },
+          },
           -- `hidden = true` is not supported in text grep commands.
           vimgrep_arguments = vimgrep_arguments,
           path_display = { "smart" },

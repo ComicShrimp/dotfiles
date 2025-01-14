@@ -8,6 +8,7 @@ return {
     end,
     opts = {},
   },
+  { "EdenEast/nightfox.nvim", priority = 1000, opts = {} },
   {
     "catppuccin/nvim",
     name = "catppuccin",
