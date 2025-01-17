@@ -13,6 +13,7 @@ return {
     dashboard = { enabled = true },
     input = { enabled = true },
     words = { enabled = true },
+    notifier = { enabled = true },
     statuscolumn = {
       left = { "mark", "sign" }, -- priority of signs on the left (high to low)
       right = { "fold", "git" }, -- priority of signs on the right (high to low)
@@ -48,6 +49,13 @@ return {
         Snacks.words.jump(-1, true)
       end,
       desc = "Jump to previous reference",
+    },
+    {
+      "<leader>h",
+      function()
+        Snacks.notifier.show_history()
+      end,
+      desc = "Show notification history",
     },
   },
 }
