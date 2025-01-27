@@ -3,3 +3,6 @@
 
 # Common dev files
 .env
+
+# Portainer config
+.config/containers/*
