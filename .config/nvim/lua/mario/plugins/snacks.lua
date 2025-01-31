@@ -57,5 +57,12 @@ return {
       end,
       desc = "Show notification history",
     },
+    {
+      "<leader>fu",
+      function()
+        Snacks.picker.undo()
+      end,
+      desc = "Undo",
+    },
   },
 }
