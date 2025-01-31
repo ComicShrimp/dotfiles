@@ -64,5 +64,41 @@ return {
       end,
       desc = "Undo",
     },
+    {
+      "<leader>ff",
+      function()
+        Snacks.picker.files({ hidden = true })
+      end,
+      desc = "Find Files",
+    },
+    {
+      "<leader>fg",
+      function()
+        Snacks.picker.git_files()
+      end,
+      desc = "Find git",
+    },
+    {
+      "<leader>fs",
+      function()
+        Snacks.picker.grep({ hidden = true })
+      end,
+      desc = "Find string in file",
+    },
+    {
+      "<leader>fr",
+      function()
+        Snacks.picker.lsp_references()
+      end,
+      desc = "Find references",
+    },
+    -- Experimental
+    {
+      "<leader>sb",
+      function()
+        Snacks.picker.explorer({ hidden = true })
+      end,
+      desc = "File explorer",
+    },
   },
 }

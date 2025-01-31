@@ -14,19 +14,20 @@
 - Tmux
 - fzf
 - NerdFont fira code
+- fd
 
 You can use the following command to install the requirements
 
 ### Arch Linux
 
 ```shell
-pacman -S stow git zsh neovim alacritty ripgrep starship unzip lazygit tmux fzf ttf-firacode-nerd
+pacman -S stow git zsh neovim alacritty ripgrep starship unzip lazygit tmux fzf ttf-firacode-nerd fd
 ```
 
 ### Homebrew
 
 ```shell
-brew install stow git zsh nvim alacritty ripgrep starship unzip lazygit tmux fzf
+brew install stow git zsh nvim alacritty ripgrep starship unzip lazygit tmux fzf fd
 ```
 
 ## Instalation

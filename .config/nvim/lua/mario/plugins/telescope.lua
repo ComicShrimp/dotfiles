@@ -48,10 +48,6 @@ return {
 
       local builtin = require("telescope.builtin")
 
-      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-      vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Find git files" })
-      vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Find string in files" })
-      vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "Find references" })
       vim.keymap.set("n", "<leader>cd", builtin.diagnostics, { desc = "Code diagnostics" })
 
       require("telescope").load_extension("ui-select")
