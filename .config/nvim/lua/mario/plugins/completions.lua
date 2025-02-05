@@ -19,6 +19,27 @@ return {
       nerd_font_variant = "mono",
     },
 
+    completion = {
+
+      menu = {
+        -- Don't automatically show the completion menu
+        auto_show = true,
+
+        -- nvim-cmp style menu
+        draw = {
+          columns = {
+            { "kind_icon" },
+            { "label", "label_description", gap = 1 },
+          },
+        },
+      },
+
+      -- Show documentation when selecting a completion item
+      documentation = { auto_show = true, auto_show_delay_ms = 500 },
+
+      -- Display a preview of the selected item on the current line
+      ghost_text = { enabled = false },
+    },
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
