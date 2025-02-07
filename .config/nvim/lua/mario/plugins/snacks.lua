@@ -37,6 +37,13 @@ return {
       desc = "Open Lazygit",
     },
     {
+      "<leader>bd",
+      function()
+        Snacks.bufdelete()
+      end,
+      { desc = "Delete Current Buffer" },
+    },
+    {
       "]]",
       function()
         Snacks.words.jump(1, true)
@@ -91,6 +98,13 @@ return {
         Snacks.picker.lsp_references()
       end,
       desc = "Find references",
+    },
+    {
+      "<leader>fb",
+      function()
+        Snacks.picker.buffers()
+      end,
+      desc = "Find Buffers",
     },
     -- Experimental
     {
