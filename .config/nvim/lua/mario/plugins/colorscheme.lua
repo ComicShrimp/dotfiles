@@ -10,6 +10,10 @@ return {
   },
   { "EdenEast/nightfox.nvim", priority = 1000, opts = {} },
   {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000,
+  },
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
