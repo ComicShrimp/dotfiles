@@ -187,6 +187,20 @@ return {
         lspconfig[lsp].setup(config_setup)
       end
 
+      -- Enable code diagnostics virtual text
+      vim.diagnostic.config({
+        virtual_text = {
+          source = true, -- Or "if_many"
+          -- prefix = "●", -- Could be '■', '▎', 'x'
+        },
+        severity_sort = true,
+        float = {
+          source = true, -- Or "if_many"
+        },
+      })
+
+      -- Keymaps
+      vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, { desc = "Open cursor diagnostics" })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Goto definition" })
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Goto references" })
