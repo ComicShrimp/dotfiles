@@ -2,18 +2,19 @@
 
 ## Requirements
 
+General Packages:
+
 - Stow
 - Git
 - Zsh
 - Nvim
   - ripgrep
-- Alacritty
+- Ghostty
 - Starship
 - unzip
 - Lazygit
 - Tmux
 - fzf
-- NerdFont fira code
 - fd
 
 You can use the following command to install the requirements
@@ -21,7 +22,7 @@ You can use the following command to install the requirements
 ### Arch Linux
 
 ```shell
-pacman -S stow git zsh neovim alacritty ripgrep starship unzip lazygit tmux fzf ttf-firacode-nerd fd
+pacman -S stow git zsh neovim ghostty ripgrep starship unzip lazygit tmux fzf fd
 ```
 
 ### Homebrew
@@ -42,6 +43,14 @@ stow .
 
 ```shell
 chsh -s $(which zsh)
+```
+
+## Hyprland Packages
+
+Specific packages for Hyprland install
+
+```sh
+pacman -S hyprland rofi-wayland
 ```
 
 ---
