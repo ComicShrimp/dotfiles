@@ -20,9 +20,7 @@ $kotlin\
 $python\
 [](fg:green bg:sapphire)\
 $conda\
-[](fg:sapphire bg:lavender)\
-$time\
-[ ](fg:lavender)\
+[ ](fg:sapphire)\
 $cmd_duration\
 $line_break\
 $character"""
@@ -152,12 +150,12 @@ vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
-show_milliseconds = true
-format = " in $duration "
+show_milliseconds = false
+format = "took $duration "
 style = "bg:lavender"
 disabled = false
-show_notifications = true
-min_time_to_notify = 45000
+show_notifications = false
+min_time = 500
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
