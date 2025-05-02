@@ -1,4 +1,4 @@
-theme = tokyonight
+theme = catppuccin-mocha
 window-decoration = false
 window-width = 1000000
 window-height = 1000000
