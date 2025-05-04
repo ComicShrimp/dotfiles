@@ -20,10 +20,15 @@ return {
     opts = {
       integrations = {
         cmp = true,
+        blink_cmp = false,
         dashboard = true,
         gitsigns = true,
         headlines = true,
         illuminate = true,
+        dropbar = {
+          enabled = false,
+          color_mode = true, -- enable color for kind's texts, not just kind's icons
+        },
         indent_blankline = { enabled = true },
         lsp_trouble = true,
         mason = true,

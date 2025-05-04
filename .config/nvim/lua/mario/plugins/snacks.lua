@@ -7,7 +7,7 @@ return {
     lazygit = { enabled = true },
     indent = {
       animate = {
-        enabled = false,
+        enabled = true,
       },
     },
     dashboard = { enabled = true },
