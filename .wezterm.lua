@@ -5,7 +5,7 @@ local mux = wezterm.mux
 
 config.color_scheme = "Catppuccin Mocha"
 
-config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
+config.font = wezterm.font("JetBrains Mono")
 config.font_size = 16
 
 config.enable_tab_bar = false
