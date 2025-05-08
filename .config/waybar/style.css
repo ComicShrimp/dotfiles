@@ -93,13 +93,12 @@
 }
 
 #custom-lock {
-  border-radius: 5px;
+  border-radius: 5px 0px 0px 5px;
   color: #babbf1;
 }
 
 #custom-power {
-  margin-right: 1rem;
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 5px 5px 5px 5px;
   color: #e78284;
 }
 
