@@ -50,7 +50,7 @@ chsh -s $(which zsh)
 Specific packages for Hyprland install
 
 ```sh
-pacman -S hyprland rofi-wayland dunst hyprpolkitagent waybar brightnessctl hyprpaper pavucontrol
+pacman -S hyprland rofi-wayland dunst hyprpolkitagent waybar brightnessctl hyprpaper pavucontrol hyprlock hypridle
 ```
 
 ---
