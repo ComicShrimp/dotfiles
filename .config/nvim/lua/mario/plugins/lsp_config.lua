@@ -1,19 +1,10 @@
 return {
   {
-    "williamboman/mason.nvim",
-    lazy = false,
-  },
-  {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
-    opts = {
-      auto_install = true,
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    lazy = false,
     dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
       "saghen/blink.cmp",
       {
         "folke/lazydev.nvim",
@@ -167,6 +158,7 @@ return {
 
       ensure_installed()
 
+      -- Mason LSP Config Setup
       local function getKeys(tbl)
         local keys = {}
         for key, _ in pairs(tbl) do
@@ -175,9 +167,8 @@ return {
         return keys
       end
 
-      -- Mason LSP Config Setup
-
       require("mason-lspconfig").setup({
+        automatic_enable = true,
         ensure_installed = getKeys(lsp_to_install),
       })
 
