@@ -20,7 +20,7 @@ return {
     opts = {
       integrations = {
         cmp = true,
-        blink_cmp = false,
+        blink_cmp = true,
         dashboard = true,
         gitsigns = true,
         headlines = true,
