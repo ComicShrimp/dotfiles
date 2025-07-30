@@ -12,6 +12,8 @@ brew tap FelixKratz/formulae
 
 echo "Installing sketchybar"
 brew install sketchybar
+brew install borders
 
 echo "Starting sketchybar service"
 brew services start sketchybar
+
