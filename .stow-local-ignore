@@ -23,8 +23,11 @@ _darcs
 
 # Styling
 \.stylua.toml
-install.sh
-/scripts
 
 # Mac OS
 .DS_Store
+
+# Install scripts
+install_*.sh
+Install.sh
+/scripts
