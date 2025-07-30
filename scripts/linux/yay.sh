@@ -16,5 +16,5 @@ if ! command -v yay &>/dev/null; then
 
   cd -
   rm -rf yay-bin
-  cd ~
+  cd ~/dotfiles # Return to dotfiles folder
 fi

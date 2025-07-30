@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LINUX_INSTALL_FOLDER="./scripts/linux/"
+LINUX_INSTALL_FOLDER="./scripts/linux"
 
 # Exit immediately if a command exits with a non-zero status
 set -e # Exit immediately if a command exits with a non-zero status
