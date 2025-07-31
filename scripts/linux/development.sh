@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Installing packages"
-pacman -S --noconfirm --needed \
+yay -S --noconfirm --needed \
   git neovim lazygit git-delta  \
   nodejs npm go
 

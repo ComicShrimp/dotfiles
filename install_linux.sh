@@ -22,3 +22,5 @@ source $LINUX_INSTALL_FOLDER/desktop.sh # Desktop Install
 
 echo "Updating the system"
 sudo pacman -Syu --noconfirm
+
+echo "Installation ended!."
