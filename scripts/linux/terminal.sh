@@ -1,6 +1,7 @@
 #!/bin/sh
 
-pacman -S --noconfirm --needed \
-  stow git zsh neovim ghostty ripgrep \
-  starship unzip lazygit tmux fzf fd \
-  git-delta bat jq fastfetch
+yay -S --noconfirm --needed \
+  stow zsh ghostty ripgrep \
+  starship unzip tmux fzf fd \
+  bat jq fastfetch wget curl \
+  eza zoxide impala inetutils alacritty
