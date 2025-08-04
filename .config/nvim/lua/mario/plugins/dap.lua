@@ -17,15 +17,62 @@ return {
 
       require("nvim-dap-virtual-text").setup({})
 
-      -- Handled by nvim-dap-go
-      -- dap.adapters.go = {
-      --   type = "server",
-      --   port = "${port}",
-      --   executable = {
-      --     command = "dlv",
-      --     args = { "dap", "-l", "127.0.0.1:${port}" },
-      --   },
-      -- }
+      -- DAP Adapters
+      local adapters = {
+        ["pwa-node"] = {
+          type = "server",
+          host = "localhost",
+          port = "${port}",
+          executable = {
+            command = "node",
+            args = {
+              vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+              "${port}",
+            },
+          },
+        },
+      }
+
+      -- DAP Configurations
+      local configurations = {
+        typescript = {
+          {
+            type = "pwa-node",
+            request = "attach",
+            name = "Auto Attach",
+            cwd = vim.fn.getcwd(),
+            protocol = "inspector",
+            port = 9229,
+          },
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+          },
+          {
+            type = "pwa-node",
+            request = "attach",
+            name = "Attach to a process",
+            processId = require("dap.utils").pick_process,
+            cwd = "${workspaceFolder}",
+          },
+        },
+      }
+
+      -- Setup adapters
+      for name, config in pairs(adapters) do
+        dap.adapters[name] = config
+      end
+
+      -- Setup configurations
+      for lang, config in pairs(configurations) do
+        dap.configurations[lang] = config
+      end
+
+      -- Share TypeScript config with JavaScript
+      dap.configurations.javascript = dap.configurations.typescript
 
       vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
       vim.keymap.set("n", "<space>dr", dap.run_to_cursor)

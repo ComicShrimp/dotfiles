@@ -126,6 +126,8 @@ return {
         -- JS/TS
         "eslint_d",
         "prettier",
+        "js-debug-adapter",
+        "typescript-language-server",
         -- Python
         "mypy",
         "ruff",
