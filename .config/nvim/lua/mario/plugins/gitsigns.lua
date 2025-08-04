@@ -5,6 +5,6 @@ return {
 
     gitsign.setup()
 
-    vim.keymap.set("n", "<leader>b", gitsign.toggle_current_line_blame, { desc = "Toggle current line blame" })
+    vim.keymap.set("n", "<leader>gb", gitsign.toggle_current_line_blame, { desc = "Toggle current line blame" })
   end,
 }
