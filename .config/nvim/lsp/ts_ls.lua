@@ -1,9 +1,6 @@
 return {
   settings = {
     ts_ls = {
-      on_attach = function(client)
-        client.server_capabilities.document_formatting = false
-      end,
       init_options = {
         preferences = {
           includeInlayParameterNameHints = "all",
