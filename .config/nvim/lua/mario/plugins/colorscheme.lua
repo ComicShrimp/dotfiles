@@ -7,7 +7,7 @@ return {
   },
   { "EdenEast/nightfox.nvim", priority = 1000, opts = {} },
   {
-    "olimorris/onedarkpro.nvim",
+    "rmehri01/onenord.nvim",
     priority = 1000,
   },
   {
