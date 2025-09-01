@@ -1,10 +1,56 @@
 #!/bin/sh
 
-# Some events send additional information specific to the event in the $INFO
-# variable. E.g. the front_app_switched event sends the name of the newly
-# focused application in the $INFO variable:
-# https://felixkratz.github.io/SketchyBar/config/events#events-and-scripting
+# Icon mapping for common applications
+APP_NAME="$INFO"
 
-if [ "$SENDER" = "front_app_switched" ]; then
-  sketchybar --set "$NAME" label="$INFO"
-fi
+case $APP_NAME in
+    "Code")
+        ICON="󰨞"
+        ;;
+    "Discord")
+        ICON="󰙯"
+        ;;
+    "Google Chrome")
+        ICON="󰊯"
+        ;;
+    "Safari")
+        ICON="󰀹"
+        ;;
+    "Firefox")
+        ICON="󰈹"
+        ;;
+    "Terminal")
+        ICON="󰆍"
+        ;;
+    "Ghostty")
+        ICON="󰆍"
+        ;;
+    "Finder")
+        ICON="󰀶"
+        ;;
+    "Music")
+        ICON="󰎆"
+        ;;
+    "Xcode")
+        ICON="󰙳"
+        ;;
+    "Docker")
+        ICON="󰡨"
+        ;;
+    "System Preferences")
+        ICON="󰒓"
+        ;;
+    "System Settings")
+        ICON="󰒓"
+        ;;
+    "Activity Monitor")
+        ICON="󰖚"
+        ;;
+    *)
+        # Default icon for unknown applications
+        ICON="$APP_NAME"
+        ;;
+esac
+
+sketchybar    -m    --set   "$NAME"         icon="$ICON" icon.padding_right=5 \
+                    --set   "$NAME".name    label="$INFO"

@@ -1,10 +1,25 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-# make sure it's executable with:
-# chmod +x ~/.config/sketchybar/plugins/aerospace.sh
+update_space() {
+    SPACE_ID=$(echo "$INFO" | jq -r '."display-1"')
 
-if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
-    sketchybar --set $NAME background.drawing=on
-else
-    sketchybar --set $NAME background.drawing=off
-fi
+    ICON=$SPACE_ID
+    ICON_PADDING_LEFT=9
+    ICON_PADDING_RIGHT=10
+
+    sketchybar --set $NAME \
+        icon=$ICON \
+        icon.padding_left=$ICON_PADDING_LEFT \
+        icon.padding_right=$ICON_PADDING_RIGHT
+}
+
+case "$SENDER" in
+"mouse.clicked")
+    # Reload sketchybar
+    sketchybar --remove '/.*/'
+    source $HOME/.config/sketchybar/sketchybarrc
+    ;;
+*)
+    update_space
+    ;;
+esac

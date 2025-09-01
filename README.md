@@ -41,3 +41,5 @@ chsh -s $(which zsh)
 - Code folding for Nvim: https://essais.co/better-folding-in-neovim/
 - Lots of snippets and configs: http://www.lazyvim.org/
 - Arch config: https://github.com/basecamp/omarchy
+- Sketchybar + aerospace: https://github.com/slashspace/dotfiles
+- Sketchybar + aerospace: https://github.com/miksoyer/nix-darwin
