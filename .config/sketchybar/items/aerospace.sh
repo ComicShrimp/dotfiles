@@ -1,8 +1,13 @@
-#!/bin/sh
+sketchybar --add event aerospace_workspace_change
 
-sketchybar  -m  --add       item    aerospace   left                                \
-                --set               aerospace   background.color=0xfff5a97f         \
-                                                icon.color=0xff24273a               \
-                                                label.drawing=off                   \
-                                                script="$PLUGIN_DIR/aerospace.sh"   \
-                --subscribe         aerospace   space_change mouse.clicked
+for sid in $(aerospace list-workspaces --all); do
+    sketchybar --add item space.$sid left \
+        --subscribe space.$sid aerospace_workspace_change \
+        --set space.$sid \
+        background.corner_radius=5 \
+        background.height=20 \
+        background.color=$BACKGROUND \
+        icon="$sid" \
+        click_script="aerospace workspace $sid" \
+        script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+done

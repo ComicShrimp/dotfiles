@@ -8,14 +8,6 @@ attr_calendar=(
   icon.y_offset=1
   label="$(LC_TIME=pt_BR.UTF-8 date '+%d/%m/%y • %a 􀐫 %H:%M')"
   label.color=0xffe0def4
-  # label.padding_right=12
-
-  # background.color=0xff2a273f
-  # background.height=28
-  # background.corner_radius=15
-  # background.border_width=2
-  # background.border_color=0xff393552
-
   padding_left=4
 
   script="$PLUGIN_DIR/calendar.sh"

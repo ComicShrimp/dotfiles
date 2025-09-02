@@ -1,25 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-update_space() {
-    SPACE_ID=$(echo "$INFO" | jq -r '."display-1"')
-
-    ICON=$SPACE_ID
-    ICON_PADDING_LEFT=9
-    ICON_PADDING_RIGHT=10
-
+if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
     sketchybar --set $NAME \
-        icon=$ICON \
-        icon.padding_left=$ICON_PADDING_LEFT \
-        icon.padding_right=$ICON_PADDING_RIGHT
-}
-
-case "$SENDER" in
-"mouse.clicked")
-    # Reload sketchybar
-    sketchybar --remove '/.*/'
-    source $HOME/.config/sketchybar/sketchybarrc
-    ;;
-*)
-    update_space
-    ;;
-esac
+            icon.color=0xff24273a \
+            background.color=0xfff5a97f \
+            click_script="aerospace workspace $1"
+else
+    sketchybar --set $NAME \
+        icon.color=0xffffffff \
+        background.color=0xee1c1c1e \
+        click_script="aerospace workspace $1"
+fi
