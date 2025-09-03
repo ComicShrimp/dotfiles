@@ -26,7 +26,7 @@ format_speed() {
   local BPS=$1
   awk -v bps="$BPS" 'BEGIN {
     speed = bps / 1000000
-    printf "%5.2fMbps", speed
+    printf "%3.2fMbps", speed
   }'
 }
 

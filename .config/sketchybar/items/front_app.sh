@@ -9,7 +9,6 @@ attr_front_app=(
     label.drawing=yes
     icon="|"
     script="$PLUGIN_DIR/front_app.sh" 
-    background.height=20
 )
 
 sketchybar  -m  --add       item        front_app               left                        \

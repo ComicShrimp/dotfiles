@@ -7,5 +7,7 @@ for sid in $(aerospace list-workspaces --all); do
         background.color=$ITEM_BG \
         icon="$sid" \
         click_script="aerospace workspace $sid" \
-        script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+        script="$CONFIG_DIR/plugins/aerospace.sh $sid" \
+        label.padding_right=0 \
+        label.padding_left=0
 done
