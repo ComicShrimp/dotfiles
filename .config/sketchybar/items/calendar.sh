@@ -3,12 +3,12 @@
 attr_calendar=(
   icon=􀉉
   icon.color=0xfff6c177
-  icon.padding_left=10
+  # icon.padding_left=10
   icon.padding_right=8
   icon.y_offset=1
   label="$(LC_TIME=pt_BR.UTF-8 date '+%d/%m/%y • %a 􀐫 %H:%M')"
   label.color=0xffe0def4
-  padding_left=4
+  padding_left=5
 
   script="$PLUGIN_DIR/calendar.sh"
   update_freq=60

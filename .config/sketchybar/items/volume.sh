@@ -15,16 +15,13 @@ volume_slider=(
 
 volume_icon=(
   click_script="$PLUGIN_DIR/volume/volume_click.sh"
-  padding_left=10
-  padding_right=0
   icon=$VOLUME_100
   icon.width=0
-  icon.align=left
   icon.color=$GREY
   icon.font="$FONT_LABEL:Regular:14.0"
   label.width=25
-  label.align=left
   label.font="$FONT_LABEL:Regular:14.0"
+  padding_left=5
 )
 
 status_bracket=(

@@ -6,7 +6,7 @@ attr_cpu_percent=(
 	label.color="$LABEL_COLOR"
 	icon="$CPU"
 	icon.color="$BLUE"
-	update_freq=3
+	update_freq=2
 	script="$PLUGIN_DIR/status/cpu.sh"
 )
 
@@ -17,7 +17,7 @@ attr_memory=(
 	icon="$MEMORY"
 	icon.font="$FONT_LABEL:Bold:16.0"
 	icon.color="$GREEN"
-	update_freq=3
+	update_freq=2
 	script="$PLUGIN_DIR/status/memory.sh"
 )
 
@@ -62,25 +62,25 @@ attr_system_status=(
 	icon.padding_right=10
 	background.corner_radius=7
 	background.padding_right=10
-  label.drawing=off
+	label.drawing=off
 	label.padding_right=10
 	icon.color="$TEXT"
-  updates=on
-  script="$PLUGIN_DIR/status.sh"
+	updates=on
+	script="$PLUGIN_DIR/status.sh"
 )
 
 sketchybar	-m	--add         item    cpu.stats       right 					                      \
-										--set                 cpu.stats       "${attr_cpu_percent[@]}"              \
-																																																\
-																																																\
-										--add         item    memory          right 		                            \
-										--set                 memory          "${attr_memory[@]}"                   \
-																																																\
-										--add         item    disk            right 		                            \
-										--set                 disk            "${attr_disk[@]}"                     \
-																																																\
-										--add         item    network.down    right 						                    \
-										--set                 network.down    "${attr_network_down[@]}" 	          \
-																																																\
-										--add         item    network.up      right 							                  \
-										--set                 network.up      "${attr_network_up[@]}"
+	--set                 cpu.stats       "${attr_cpu_percent[@]}"              \
+	\
+	\
+	--add         item    memory          right 		                            \
+	--set                 memory          "${attr_memory[@]}"                   \
+	\
+	--add         item    disk            right 		                            \
+	--set                 disk            "${attr_disk[@]}"                     \
+	\
+	--add         item    network.down    right 						                    \
+	--set                 network.down    "${attr_network_down[@]}" 	          \
+	\
+	--add         item    network.up      right 							                  \
+	--set                 network.up      "${attr_network_up[@]}"

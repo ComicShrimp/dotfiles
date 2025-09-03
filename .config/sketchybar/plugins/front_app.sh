@@ -52,5 +52,5 @@ case $APP_NAME in
         ;;
 esac
 
-sketchybar    -m    --set   "$NAME"         icon="$ICON" icon.padding_right=5 \
-                    --set   "$NAME".name    label="$INFO"
+sketchybar    -m    --set   "$NAME"     icon.padding_right=5 \
+                    --set   "$NAME"    label="$INFO"

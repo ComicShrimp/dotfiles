@@ -4,7 +4,7 @@ attr_network=(
   icon=$WIFI_CONNECTED
   icon.color=$YELLOW
   icon.padding_left=6
-  icon.padding_right=6
+  icon.padding_right=0
   icon.font="SF Pro:SemiBold:14.0"
   label.font="SF Pro:Semibold:13.0"
   label.width=0
@@ -23,6 +23,5 @@ sketchybar    -m    --add         item      network     right                   
                                                         mouse.clicked                         \
                                                                                               \
                     --add         net_bat     network                                         \
-                                                        net_spr                               \
                                                         battery                               \
                     --set                   net_bat     "${attr_net_bat[@]}" 

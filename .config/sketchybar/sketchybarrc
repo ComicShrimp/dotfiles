@@ -9,18 +9,17 @@ source $CONFIG_DIR/icons.sh
 source $CONFIG_DIR/settings.sh
 
 bar=( 
-    color=0x8820263a
-    border_color=0x44999999
+    color=0x0000000
+    border_color=0x0000000
     border_width=1
     position=top
     height=38
-    margin=-1
-    padding_left=18 
-    padding_right=10 
+    margin=-15
+    # padding_left=18 
+    # padding_right=10 
     notch_display_height=0
     notch_width=200
     notch_offset=0
-    y_offset=-1
     corner_radius=0
     blur_radius=36
     shadow=on
@@ -34,17 +33,17 @@ sketchybar --bar "${bar[@]}"
 
 
 sketchybar --default \
-    background.corner_radius=5 \
-    background.padding_right=5 \
-    background.height=26 \
-    background.color=0x9924273a \
+    background.height=20 \
+    background.corner_radius=0 \
+    background.padding_right=0 \
+    background.color=$ITEM_BG \
     icon.font="$FONT_ICON:Medium:15.0" \
     icon.padding_left=5 \
     icon.padding_right=5 \
     label.font="$FONT_LABEL:Medium:12.0" \
     label.color=0xffffffff \
     label.y_offset=0 \
-    label.padding_left=0 \
+    label.padding_left=5 \
     label.padding_right=5 \
     popup.background.color=0xee1c1c1e \
 	popup.background.border_color=0xffcccccc \
