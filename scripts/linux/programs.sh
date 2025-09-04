@@ -1,4 +1,13 @@
 #!/bin/bash
 
+# System Programs
 yay -S --noconfirm --needed \
-  obsidian waybar brightnessctl \
+  waybar \
+  brightnessctl \
+  swayosd \
+  playerctl
+
+# Programs
+yay -S --noconfirm --needed \
+  obsidian \
+
