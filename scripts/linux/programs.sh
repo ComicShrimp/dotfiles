@@ -5,9 +5,15 @@ yay -S --noconfirm --needed \
   waybar \
   brightnessctl \
   swayosd \
-  playerctl
+  playerctl \
+  btop \
+  powertop \
+  flatpak
 
 # Programs
 yay -S --noconfirm --needed \
   obsidian \
 
+# Flatpak Programs
+flatpak install \
+  app.zen_browser.zen
