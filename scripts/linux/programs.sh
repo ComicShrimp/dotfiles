@@ -13,6 +13,7 @@ yay -S --noconfirm --needed \
 # Programs
 yay -S --noconfirm --needed \
   obsidian \
+  steam
 
 # Flatpak Programs
 flatpak install \
