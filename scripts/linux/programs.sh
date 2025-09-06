@@ -8,7 +8,8 @@ yay -S --noconfirm --needed \
   playerctl \
   btop \
   powertop \
-  flatpak
+  flatpak \
+  mako
 
 # Programs
 yay -S --noconfirm --needed \

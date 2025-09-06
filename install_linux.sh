@@ -8,6 +8,7 @@ set -e # Exit immediately if a command exits with a non-zero status
 # Install scripts
 
 source $LINUX_INSTALL_FOLDER/1-yay.sh # Yay install
+source $LINUX_INSTALL_FOLDER/2-pacman.sh # Pacman Conf
 source $LINUX_INSTALL_FOLDER/development.sh # bluetooth install
 source $LINUX_INSTALL_FOLDER/terminal.sh # General tools used in terminal Install
 source $LINUX_INSTALL_FOLDER/docker.sh # Docker Install
