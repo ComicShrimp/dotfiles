@@ -12,7 +12,8 @@ yay -S --noconfirm --needed \
   mako \
   nautilus \
   gvfs-smb \
-  swaybg
+  swaybg \
+  xdg-desktop-portal-gtk
 
 # Programs
 yay -S --noconfirm --needed \
