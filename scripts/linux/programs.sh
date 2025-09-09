@@ -9,7 +9,10 @@ yay -S --noconfirm --needed \
   btop \
   powertop \
   flatpak \
-  mako
+  mako \
+  nautilus \
+  gvfs-smb \
+  swaybg
 
 # Programs
 yay -S --noconfirm --needed \
