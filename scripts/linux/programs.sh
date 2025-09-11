@@ -13,7 +13,8 @@ yay -S --noconfirm --needed \
   nautilus \
   gvfs-smb \
   swaybg \
-  xdg-desktop-portal-gtk
+  xdg-desktop-portal-gtk \
+  polkit-gnome
 
 # Programs
 yay -S --noconfirm --needed \
