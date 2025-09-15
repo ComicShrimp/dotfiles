@@ -11,9 +11,6 @@ startup_mode = "Maximized"
 x = 0
 y = 0
 
-[font]
-size = 14.0
-
 [font.bold]
 family = "JetBrains Mono Nerd Font Mono"
 style = "Heavy"

@@ -15,7 +15,8 @@ yay -S --noconfirm --needed \
   swaybg \
   xdg-desktop-portal-gtk \
   wireless-regdb \
-  polkit-gnome
+  polkit-gnome \
+  wiremix
 
 # Programs
 yay -S --noconfirm --needed \
