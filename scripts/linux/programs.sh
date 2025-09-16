@@ -19,6 +19,7 @@ yay -S --noconfirm --needed \
   qt6-wayland \
   grim \
   slurp \
+  plymouth \
   wireless-regdb \
   polkit-gnome \
   wiremix \
