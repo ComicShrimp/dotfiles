@@ -25,6 +25,10 @@ yay -S --noconfirm --needed \
   walker-bin \
   uwsm \
   hyprland \
+  cups \
+  cups-browsed \
+  cups-filters \
+  cups-pdf \
   blueberry
 
 # Programs

@@ -28,6 +28,6 @@ _darcs
 .DS_Store
 
 # Install scripts
-install_*.sh
+\install_*.sh
 Install.sh
 /scripts
