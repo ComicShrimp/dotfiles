@@ -21,6 +21,7 @@ source $LINUX_INSTALL_FOLDER/network.sh # programs Install
 source $LINUX_INSTALL_FOLDER/printer.sh
 
 # Login
+source $LINUX_INSTALL_FOLDER/login/remove-sddm.sh
 source $LINUX_INSTALL_FOLDER/login/plymouth.sh
 source $LINUX_INSTALL_FOLDER/login/limine-snapper.sh
 source $LINUX_INSTALL_FOLDER/login/alt-bootloaders.sh
