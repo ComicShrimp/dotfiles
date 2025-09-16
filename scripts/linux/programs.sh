@@ -16,7 +16,9 @@ yay -S --noconfirm --needed \
   xdg-desktop-portal-gtk \
   wireless-regdb \
   polkit-gnome \
-  wiremix
+  wiremix \
+  walker-bin \
+  blueberry
 
 # Programs
 yay -S --noconfirm --needed \
