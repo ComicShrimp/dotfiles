@@ -14,10 +14,17 @@ yay -S --noconfirm --needed \
   gvfs-smb \
   swaybg \
   xdg-desktop-portal-gtk \
+  xdg-desktop-portal-hyprland \
+  qt5-wayland \
+  qt6-wayland \
+  grim \
+  slurp \
   wireless-regdb \
   polkit-gnome \
   wiremix \
   walker-bin \
+  uwsm \
+  hyprland \
   blueberry
 
 # Programs
