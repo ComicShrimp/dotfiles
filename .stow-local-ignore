@@ -28,6 +28,7 @@ _darcs
 .DS_Store
 
 # Install scripts
-\install_*.sh
+install_linux.sh
+install_mac.sh
 Install.sh
 /scripts

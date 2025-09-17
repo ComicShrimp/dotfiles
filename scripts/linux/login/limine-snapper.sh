@@ -62,7 +62,7 @@ term_background_bright: 24283b
  
 EOF
 
-  sudo pacman -S --noconfirm --needed limine-snapper-sync limine-mkinitcpio-hook
+  yay -S --noconfirm --needed limine-snapper-sync limine-mkinitcpio-hook
   sudo limine-update
 
   # Match Snapper configs if not installing from the ISO
@@ -79,7 +79,7 @@ EOF
   sudo sed -i 's/^NUMBER_LIMIT="50"/NUMBER_LIMIT="5"/' /etc/snapper/configs/{root,home}
   sudo sed -i 's/^NUMBER_LIMIT_IMPORTANT="10"/NUMBER_LIMIT_IMPORTANT="5"/' /etc/snapper/configs/{root,home}
 
-  chrootable_systemctl_enable limine-snapper-sync.service
+  sudo systemctl enable limine-snapper-sync
 fi
 
 # Add UKI entry to UEFI machines to skip bootloader showing on normal boot
