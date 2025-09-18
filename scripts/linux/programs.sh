@@ -26,6 +26,9 @@ yay -S --noconfirm --needed \
   walker-bin \
   uwsm \
   hyprland \
+  hyprlock \
+  hypridle \
+  hyprland-qtutils \
   cups \
   cups-browsed \
   cups-filters \
@@ -39,4 +42,5 @@ yay -S --noconfirm --needed \
 
 # Flatpak Programs
 flatpak install \
-  app.zen_browser.zen
+  app.zen_browser.zen \
+  it.mijorus.gearlever
