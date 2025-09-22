@@ -15,6 +15,7 @@ source $LINUX_INSTALL_FOLDER/docker.sh # Docker Install
 source $LINUX_INSTALL_FOLDER/theme.sh # Theme Install
 source $LINUX_INSTALL_FOLDER/firewall.sh # Firewall Install
 source $LINUX_INSTALL_FOLDER/power.sh # Firewall Install
+source $LINUX_INSTALL_FOLDER/hyprland.sh # Firewall Install
 source $LINUX_INSTALL_FOLDER/programs.sh # programs Install
 source $LINUX_INSTALL_FOLDER/fonts.sh # programs Install
 source $LINUX_INSTALL_FOLDER/network.sh # programs Install
