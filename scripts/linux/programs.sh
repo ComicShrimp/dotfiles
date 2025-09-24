@@ -3,7 +3,8 @@
 # Programs
 yay -S --noconfirm --needed \
   obsidian \
-  steam
+  google-chrome \
+  timeshift
 
 # Flatpak Programs
 flatpak install \
