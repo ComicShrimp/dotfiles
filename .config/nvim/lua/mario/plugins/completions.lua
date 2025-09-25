@@ -1,7 +1,20 @@
 return {
   "saghen/blink.cmp",
+  event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
-    { "rafamadriz/friendly-snippets" },
+    {
+      "L3MON4D3/LuaSnip",
+      -- follow latest release.
+      version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+      -- install jsregexp (optional!).
+      build = "make install_jsregexp",
+    },
+    {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
   },
   version = "1.*",
 
@@ -43,7 +56,7 @@ return {
       documentation = { auto_show = true, auto_show_delay_ms = 500 },
 
       -- Display a preview of the selected item on the current line
-      ghost_text = { enabled = false },
+      ghost_text = { enabled = true },
     },
 
     -- Default list of enabled providers defined so that you can extend it
@@ -53,7 +66,7 @@ return {
     },
 
     -- Use a preset for snippets, check the snippets documentation for more information
-    snippets = { preset = "default" },
+    snippets = { preset = "luasnip" },
 
     -- Experimental signature help support
     signature = { enabled = false },
