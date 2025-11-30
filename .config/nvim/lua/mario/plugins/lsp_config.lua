@@ -58,6 +58,8 @@ return {
         "stylua",
         -- Others
         "marksman", -- Markdown
+        -- Tree Siter
+        "tree-sitter-cli",
       }
 
       -- Mason Setup
