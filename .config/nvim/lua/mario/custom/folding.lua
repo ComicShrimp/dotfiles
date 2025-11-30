@@ -1,9 +1,5 @@
 -- Set general options
 vim.o.foldenable = false
-vim.o.foldlevel = 99
-vim.opt.fillchars = {
-  fold = " ", -- Character to fill the fold column
-}
 vim.o.foldtext = "v:lua.CustomFoldText()"
 
 -- Set window options
