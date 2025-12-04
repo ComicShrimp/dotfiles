@@ -14,6 +14,7 @@ return {
     input = { enabled = true },
     words = { enabled = true },
     notifier = { enabled = true },
+    scroll = { enabled = true },
     statuscolumn = {
       left = { "mark", "sign" }, -- priority of signs on the left (high to low)
       right = { "fold", "git" }, -- priority of signs on the right (high to low)
@@ -105,6 +106,13 @@ return {
         Snacks.picker.buffers()
       end,
       desc = "Find Buffers",
+    },
+    {
+      "<leader>u",
+      function()
+        Snacks.picker.undo()
+      end,
+      desc = "Undo Tree",
     },
     -- Experimental
     {
