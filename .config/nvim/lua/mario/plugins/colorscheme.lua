@@ -4,17 +4,17 @@ return {
     lazy = false,
     priority = 1000,
     opts = {},
-    config = function()
-      vim.cmd.colorscheme("tokyonight")
-    end,
+    -- config = function()
+    --   vim.cmd.colorscheme("tokyonight")
+    -- end,
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    -- config = function()
-    --   vim.cmd.colorscheme("catppuccin-mocha")
-    -- end,
+    config = function()
+      vim.cmd.colorscheme("catppuccin-mocha")
+    end,
     opts = {
       integrations = {
         dap = true,
