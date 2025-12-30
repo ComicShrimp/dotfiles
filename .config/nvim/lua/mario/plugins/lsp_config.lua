@@ -40,6 +40,7 @@ return {
         -- Docker
         "hadolint",
         -- JS/TS
+        "eslint_d",
         "prettier",
         "js-debug-adapter",
         -- Python
