@@ -6,8 +6,6 @@ return {
     conform.setup({
       log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
-        javascript = { "eslint_d", "prettier", stop_after_first = true },
-        typescript = { "eslint_d", "prettier", stop_after_first = true },
         javascriptreact = { "prettier" },
         typescriptreact = { "prettier" },
         css = { "prettier" },

@@ -24,7 +24,7 @@ return {
         "lua_ls",
         "gopls",
         "eslint",
-        "ts_ls",
+        "vtsls",
         "tailwindcss",
         "rust_analyzer",
         "zls",
@@ -40,10 +40,8 @@ return {
         -- Docker
         "hadolint",
         -- JS/TS
-        "eslint_d",
         "prettier",
         "js-debug-adapter",
-        "typescript-language-server",
         -- Python
         "mypy",
         "ruff",

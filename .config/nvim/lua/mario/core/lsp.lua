@@ -2,7 +2,7 @@ vim.lsp.enable({
   "lua_ls",
   "gopls",
   "eslint",
-  "ts_ls",
+  "vtsls",
   "tailwindcss",
   "rust_analyzer",
   "zls",

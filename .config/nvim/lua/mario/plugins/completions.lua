@@ -66,7 +66,7 @@ return {
     },
 
     -- Use a preset for snippets, check the snippets documentation for more information
-    snippets = { preset = "luasnip" },
+    snippets = { preset = "default" },
 
     -- Experimental signature help support
     signature = { enabled = false },
