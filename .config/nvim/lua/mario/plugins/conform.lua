@@ -6,6 +6,8 @@ return {
     conform.setup({
       log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
+        javascript = { "prettier" },
+        typescript = { "prettier" },
         javascriptreact = { "prettier" },
         typescriptreact = { "prettier" },
         css = { "prettier" },
