@@ -12,3 +12,9 @@ fi
 if [ -d "$HOME/flutter" ] ; then
     export PATH=$HOME/flutter/bin:$PATH
 fi
+
+# Add GO to path if it exists
+if [ -d "$HOME/go" ] ; then
+    export PATH="$HOME/go/bin:$PATH"
+fi
+
