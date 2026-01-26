@@ -43,3 +43,4 @@ chsh -s $(which zsh)
 - Arch config: https://github.com/basecamp/omarchy
 - Sketchybar + aerospace: https://github.com/slashspace/dotfiles
 - Sketchybar + aerospace: https://github.com/miksoyer/nix-darwin
+- Nvim config: https://tduyng.com/series/neovim/

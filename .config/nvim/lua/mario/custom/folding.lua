@@ -4,43 +4,6 @@ vim.o.foldtext = "v:lua.CustomFoldText()"
 
 -- Set window options
 vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "v:lua.GetPotionFold(v:lnum)"
-
-function GetPotionFold(lnum)
-  local line = vim.fn.getline(lnum)
-  if line:match("^%s*$") then
-    return "-1"
-  end
-
-  local this_indent = IndentLevel(lnum)
-  local next_indent = IndentLevel(NextNonBlankLine(lnum))
-
-  if next_indent == this_indent then
-    return this_indent
-  elseif next_indent < this_indent then
-    return this_indent
-  elseif next_indent > this_indent then
-    return ">" .. next_indent
-  end
-end
-
-function IndentLevel(lnum)
-  return vim.fn.indent(lnum) / vim.o.shiftwidth
-end
-
-function NextNonBlankLine(lnum)
-  local numlines = vim.fn.line("$")
-  local current = lnum + 1
-
-  while current <= numlines do
-    if vim.fn.getline(current):match("%S") then
-      return current
-    end
-    current = current + 1
-  end
-
-  return -2
-end
 
 function CustomFoldText()
   local fs = vim.v.foldstart
