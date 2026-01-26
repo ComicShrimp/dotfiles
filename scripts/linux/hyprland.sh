@@ -6,9 +6,6 @@ yay -S --noconfirm --needed \
   brightnessctl \
   swayosd \
   playerctl \
-  btop \
-  powertop \
-  flatpak \
   mako \
   nautilus \
   gvfs-smb \

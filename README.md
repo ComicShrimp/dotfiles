@@ -4,7 +4,9 @@
 
 ### Arch Linux
 
-The install scripts expect that you already have Arch Linux installed with Gnome before running it and adding hyprland.
+The install scripts expect that you already have Arch Linux installed before running it and adding hyprland.
+
+In Archinstall, choose hyprland as you DE, so it will install some necessary deps.
 
 ## Instalation
 

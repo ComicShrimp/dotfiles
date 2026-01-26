@@ -4,6 +4,9 @@
 yay -S --noconfirm --needed \
   obsidian \
   google-chrome \
+  btop \
+  powertop \
+  flatpak \
   timeshift
 
 # Flatpak Programs
