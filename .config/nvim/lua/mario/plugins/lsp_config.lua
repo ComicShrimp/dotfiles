@@ -53,6 +53,8 @@ return {
         "golines",
         "gomodifytags",
         "impl",
+        "golangci-lint-langserver",
+        "golangci-lint",
         -- Lua
         "stylua",
         -- Others

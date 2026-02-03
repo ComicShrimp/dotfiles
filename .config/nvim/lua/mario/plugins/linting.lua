@@ -12,6 +12,7 @@ return {
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       python = { "ruff", "mypy" },
+      go = { "golangcilint" },
     }
 
     vim.keymap.set("n", "<leader>cl", function()
