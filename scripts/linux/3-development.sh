@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Installing packages"
+echo "Installing coding languages and tools"
 yay -S --noconfirm --needed \
   git neovim lazygit git-delta  \
   nodejs npm go hugo
