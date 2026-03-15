@@ -9,17 +9,15 @@ set -e # Exit immediately if a command exits with a non-zero status
 
 source $LINUX_INSTALL_FOLDER/1-yay.sh # Yay install
 source $LINUX_INSTALL_FOLDER/2-pacman.sh # Pacman Conf
-source $LINUX_INSTALL_FOLDER/development.sh # bluetooth install
-source $LINUX_INSTALL_FOLDER/terminal.sh # General tools used in terminal Install
-source $LINUX_INSTALL_FOLDER/docker.sh # Docker Install
-source $LINUX_INSTALL_FOLDER/theme.sh # Theme Install
-source $LINUX_INSTALL_FOLDER/firewall.sh # Firewall Install
-source $LINUX_INSTALL_FOLDER/power.sh # Firewall Install
-source $LINUX_INSTALL_FOLDER/hyprland.sh # Firewall Install
-source $LINUX_INSTALL_FOLDER/programs.sh # programs Install
-source $LINUX_INSTALL_FOLDER/fonts.sh # programs Install
-source $LINUX_INSTALL_FOLDER/network.sh # programs Install
-source $LINUX_INSTALL_FOLDER/printer.sh
+source $LINUX_INSTALL_FOLDER/3-development.sh # bluetooth install
+source $LINUX_INSTALL_FOLDER/4-docker.sh # Docker Install
+source $LINUX_INSTALL_FOLDER/5-terminal.sh # General tools used in terminal Install
+source $LINUX_INSTALL_FOLDER/6-firewall.sh # Firewall Install
+source $LINUX_INSTALL_FOLDER/7-fonts.sh # Fonts Install
+source $LINUX_INSTALL_FOLDER/8-programs.sh # programs Install
+source $LINUX_INSTALL_FOLDER/9-power.sh # Power Profile Install
+source $LINUX_INSTALL_FOLDER/network.sh # Maybe
+source $LINUX_INSTALL_FOLDER/printer.sh # Maybe
 
 # Change default terminal
 chsh -s $(which zsh)
