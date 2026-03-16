@@ -16,8 +16,6 @@ source $LINUX_INSTALL_FOLDER/6-firewall.sh # Firewall Install
 source $LINUX_INSTALL_FOLDER/7-fonts.sh # Fonts Install
 source $LINUX_INSTALL_FOLDER/8-programs.sh # programs Install
 source $LINUX_INSTALL_FOLDER/9-power.sh # Power Profile Install
-source $LINUX_INSTALL_FOLDER/network.sh # Maybe
-source $LINUX_INSTALL_FOLDER/printer.sh # Maybe
 
 # Change default terminal
 chsh -s $(which zsh)
