@@ -9,13 +9,29 @@
 #    - limine-snapper-sync    (syncs snapshots into Limine boot menu)
 #    - limine-mkinitcpio-hook (kernel hook for Limine + OverlayFS initramfs)
 #
+#  Run as a regular user — the script will ask for your sudo password once.
+#  Exits cleanly if requirements are not met.
+#
 #  Requirements:
 #    - UEFI system
 #    - Btrfs root filesystem
 #    - Limine bootloader installed
 #    - yay installed
-#    - @snapshots subvolume at top level (subvolid=5), mounted at /.snapshots
+#    - @snapshots subvolume at top level (subvolid=5)
 #
+# =============================================================================
+#  SNAPPER CONFIGS
+#  Add or remove entries to snapshot additional subvolumes.
+#  Format: "config_name:/mount/point"
+#  The first entry must always be "root:/" — it is the only one that appears
+#  in the Limine boot menu. The rest are for manual recovery only.
+# =============================================================================
+SNAPPER_CONFIGS=(
+    "root:/"
+    "home:/home"
+    # "srv:/srv"
+    # "data:/mnt/data"
+)
 # =============================================================================
 set -euo pipefail
 
@@ -63,7 +79,6 @@ check "UEFI system"                     "[[ -d /sys/firmware/efi ]]"
 check "Root filesystem is Btrfs"        "[[ \"\$(findmnt -n -o FSTYPE /)\" == btrfs ]]"
 check "limine is installed"             "command -v limine"
 check "yay is installed"                "command -v yay"
-check "/.snapshots is a mountpoint"     "mountpoint -q /.snapshots"
 # Snapper config is detected at runtime, not a hard requirement
 SNAPPER_CONFIGURED=false
 snapper -c root list &>/dev/null && SNAPPER_CONFIGURED=true
@@ -81,7 +96,7 @@ if [[ -n "$BTRFS_DEV" ]]; then
     mount -o subvolid=5 "$BTRFS_DEV" "$TMPBTRFS" 2>/dev/null || true
 
     if btrfs subvolume list "$TMPBTRFS" 2>/dev/null \
-            | awk '{print $7}' \
+            | awk '{print $9}' \
             | grep -qE '^@snapshots$'; then
         echo -e "  ${GREEN}✔${RESET} @snapshots subvolume exists at top level"
         SNAP_SUBVOL="/@snapshots"
@@ -99,20 +114,6 @@ else
     ERRORS=$(( ERRORS + 1 ))
 fi
 
-# Locate limine.conf
-LIMINE_CONF=""
-for candidate in /boot/limine.conf /boot/efi/limine.conf /efi/limine.conf; do
-    if [[ -f "$candidate" ]]; then
-        LIMINE_CONF="$candidate"
-        break
-    fi
-done
-
-if [[ -n "$LIMINE_CONF" ]]; then
-    echo -e "  ${GREEN}✔${RESET} limine.conf found at $LIMINE_CONF"
-else
-    echo -e "  ${RED}✘${RESET} limine.conf not found (checked /boot, /boot/efi, /efi)"
-    ERRORS=$(( ERRORS + 1 ))
 fi
 
 echo -e "  ${GREEN}✔${RESET} Invoking user  : $REAL_USER"
@@ -124,7 +125,6 @@ echo ""
 echo -e "${BOLD}Detected configuration:${RESET}"
 echo "  Btrfs device    : $BTRFS_DEV"
 echo "  Snapshots subvol: $SNAP_SUBVOL"
-echo "  limine.conf     : $LIMINE_CONF"
 echo "  Invoking user   : $REAL_USER"
 echo ""
 
@@ -144,58 +144,45 @@ sudo -u "$REAL_USER" yay -S --needed --noconfirm \
 success "All packages installed."
 
 # =============================================================================
+# =============================================================================
 #  STEP 2 — Snapper configuration
 # =============================================================================
-#  SNAPPER CONFIGS
-#  Add or remove entries to snapshot additional subvolumes.
-#  Format: "config_name:/mount/point"
-#  The first entry must always be "root:/" — it is the only one that appears
-#  in the Limine boot menu. The rest are for manual recovery only.
-# =============================================================================
-SNAPPER_CONFIGS=(
-    "root:/"
-    "home:/home"
-)
-
 step "Configuring Snapper"
 
-for entry in "${SNAPPER_CONFIGS[@]}"; do
-    cfg="${entry%%:*}"
-    mnt="${entry##*:}"
+snapper_setup() {
+    local cfg="$1" mnt="$2"
 
     if snapper -c "$cfg" list &>/dev/null; then
-        info "Snapper '$cfg' config already exists, skipping create-config."
-    else
-        info "Running snapper create-config for '$cfg' ($mnt)..."
-        # For root: /.snapshots may already be mounted — handle the ArchWiki procedure
-        if [[ "$cfg" == "root" ]] && mountpoint -q /.snapshots; then
-            umount /.snapshots
-            snapper -c root create-config /
-            btrfs subvolume delete /.snapshots
-            mkdir -p /.snapshots
-            mount -a
-        else
-            snapper -c "$cfg" create-config "$mnt"
-        fi
-        info "Snapper '$cfg' create-config done."
+        info "'$cfg' already configured, skipping."
+        return
     fi
 
-    info "Tuning '$cfg' snapper limits..."
+    if [[ "$cfg" == "root" ]]; then
+        umount /.snapshots || true
+        mv /.snapshots /.snapshots.bak
+        snapper -c root create-config /
+        rm -rf /.snapshots
+        mv /.snapshots.bak /.snapshots
+        mount -a
+    else
+        snapper -c "$cfg" create-config "$mnt"
+    fi
+
     snapper -c "$cfg" set-config \
         ALLOW_USERS="$REAL_USER" \
-        TIMELINE_CREATE=yes \
-        TIMELINE_CLEANUP=yes \
-        TIMELINE_LIMIT_HOURLY=5 \
-        TIMELINE_LIMIT_DAILY=7 \
-        TIMELINE_LIMIT_WEEKLY=0 \
-        TIMELINE_LIMIT_MONTHLY=0 \
-        TIMELINE_LIMIT_YEARLY=0 \
-        NUMBER_LIMIT=10 \
-        NUMBER_CLEANUP=yes
+        TIMELINE_CREATE=yes  TIMELINE_CLEANUP=yes \
+        TIMELINE_LIMIT_HOURLY=5  TIMELINE_LIMIT_DAILY=7 \
+        TIMELINE_LIMIT_WEEKLY=0  TIMELINE_LIMIT_MONTHLY=0 \
+        TIMELINE_LIMIT_YEARLY=0  NUMBER_LIMIT=10  NUMBER_CLEANUP=yes
+
+    success "'$cfg' configured."
+}
+
+for entry in "${SNAPPER_CONFIGS[@]}"; do
+    snapper_setup "${entry%%:*}" "${entry##*:}"
 done
 
-systemctl enable --now snapper-timeline.timer
-systemctl enable --now snapper-cleanup.timer
+systemctl enable --now snapper-timeline.timer snapper-cleanup.timer
 
 success "Snapper configured for: ${SNAPPER_CONFIGS[*]%%:*}"
 
@@ -206,12 +193,22 @@ step "Updating mkinitcpio.conf"
 
 MKINITCPIO_CONF="/etc/mkinitcpio.conf"
 
-if grep -qP 'HOOKS=.*\bsystemd\b' "$MKINITCPIO_CONF"; then
+# Use sd-btrfs-overlayfs only for a pure systemd initramfs (systemd hook,
+# no udev). With udev present (busybox or mixed), always use btrfs-overlayfs.
+if grep -qP 'HOOKS=.*\bsystemd\b' "$MKINITCPIO_CONF" && \
+   ! grep -qP 'HOOKS=.*\budev\b' "$MKINITCPIO_CONF"; then
     OVERLAY_HOOK="sd-btrfs-overlayfs"
-    info "Detected systemd initramfs → using: $OVERLAY_HOOK"
+    WRONG_HOOK="btrfs-overlayfs"
 else
     OVERLAY_HOOK="btrfs-overlayfs"
-    info "Detected busybox initramfs → using: $OVERLAY_HOOK"
+    WRONG_HOOK="sd-btrfs-overlayfs"
+fi
+info "Detected hook: $OVERLAY_HOOK"
+
+# Remove the wrong hook if a previous run added it
+if grep -q "$WRONG_HOOK" "$MKINITCPIO_CONF"; then
+    sed -i "s/ $WRONG_HOOK//" "$MKINITCPIO_CONF"
+    warn "Removed incorrect hook $WRONG_HOOK from mkinitcpio.conf."
 fi
 
 if grep -q "$OVERLAY_HOOK" "$MKINITCPIO_CONF"; then
@@ -246,20 +243,6 @@ sed -i "s|^#\?ROOT_SNAPSHOTS_PATH=.*|ROOT_SNAPSHOTS_PATH=\"$SNAP_SUBVOL\"|"     
 
 info "Set ROOT_SNAPSHOTS_PATH=$SNAP_SUBVOL"
 success "limine-snapper-sync configured."
-
-# =============================================================================
-#  STEP 5 — Add //Snapshots anchor to limine.conf
-# =============================================================================
-step "Updating $LIMINE_CONF"
-
-if grep -q "//Snapshots" "$LIMINE_CONF"; then
-    warn "//Snapshots already present in $LIMINE_CONF, skipping."
-else
-    echo ""                                                        >> "$LIMINE_CONF"
-    echo "# Snapshot boot entries (managed by limine-snapper-sync)" >> "$LIMINE_CONF"
-    echo "//Snapshots"                                             >> "$LIMINE_CONF"
-    success "//Snapshots anchor added to $LIMINE_CONF"
-fi
 
 # =============================================================================
 #  STEP 6 — Enable limine-snapper-sync service
