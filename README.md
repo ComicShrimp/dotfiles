@@ -4,9 +4,32 @@
 
 ### Arch Linux
 
-The install scripts expect that you already have Arch Linux installed before running it and adding hyprland.
+This repo assumes you will install Arch Linux using `archinstall` and set the partition layout manually, since is needed to set the correct subvolumes for system snapshots.
 
-In Archinstall, choose hyprland as you DE, so it will install some necessary deps.
+## Disk Layout
+
+For `snapper` config with `limine` and `btrfs` you need the following subvolumes and disk layout:
+
+### Btrfs Subvolume Layout
+
+| Subvolume | Mount point |
+|-----------|-------------|
+| `@` | `/` |
+| `@home` | `/home` |
+| `@snapshots` | `/.snapshots` |
+| `@log` | `/var/log` |
+| `@pkg` | `/var/cache/pacman/pkg` |
+| `@tmp` | `/tmp` |
+
+### Boot Partition
+
+| Partition | Filesystem | Size | Mount point |
+|-----------|------------|------|-------------|
+| EFI | FAT32 | 512MB | `/boot/efi` |
+
+## Snapper
+
+Should select `snapper` as snapshot tool in `archinstall`.
 
 ## Instalation
 
