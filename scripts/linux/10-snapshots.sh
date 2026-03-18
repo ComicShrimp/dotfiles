@@ -9,15 +9,13 @@
 #    - limine-snapper-sync    (syncs snapshots into Limine boot menu)
 #    - limine-mkinitcpio-hook (kernel hook for Limine + OverlayFS initramfs)
 #
-#  Run as a regular user — the script will ask for your sudo password once.
-#  Exits cleanly if requirements are not met.
-#
 #  Requirements:
 #    - UEFI system
 #    - Btrfs root filesystem
 #    - Limine bootloader installed
 #    - yay installed
 #    - @snapshots subvolume at top level (subvolid=5), mounted at /.snapshots
+#
 # =============================================================================
 set -euo pipefail
 
@@ -66,7 +64,14 @@ check "Root filesystem is Btrfs"        "[[ \"\$(findmnt -n -o FSTYPE /)\" == bt
 check "limine is installed"             "command -v limine"
 check "yay is installed"                "command -v yay"
 check "/.snapshots is a mountpoint"     "mountpoint -q /.snapshots"
-check "Snapper root config exists"      "snapper -c root list"
+# Snapper config is detected at runtime, not a hard requirement
+SNAPPER_CONFIGURED=false
+snapper -c root list &>/dev/null && SNAPPER_CONFIGURED=true
+if $SNAPPER_CONFIGURED; then
+    echo -e "  ${GREEN}✔${RESET} Snapper root config exists"
+else
+    echo -e "  ${YELLOW}!${RESET} Snapper not configured — will run create-config during setup"
+fi
 
 # Check that @snapshots exists at the Btrfs top level (subvolid=5)
 BTRFS_DEV=$(findmnt -n -o SOURCE / 2>/dev/null || true)
@@ -129,7 +134,7 @@ echo ""
 step "Installing packages"
 
 info "Installing snap-pac from official repos..."
-pacman -S --needed --noconfirm snap-pac
+pacman -S --needed --noconfirm snapper snap-pac
 
 info "Installing limine-snapper-sync and limine-mkinitcpio-hook from AUR..."
 sudo -u "$REAL_USER" yay -S --needed --noconfirm \
@@ -141,28 +146,58 @@ success "All packages installed."
 # =============================================================================
 #  STEP 2 — Snapper configuration
 # =============================================================================
+#  SNAPPER CONFIGS
+#  Add or remove entries to snapshot additional subvolumes.
+#  Format: "config_name:/mount/point"
+#  The first entry must always be "root:/" — it is the only one that appears
+#  in the Limine boot menu. The rest are for manual recovery only.
+# =============================================================================
+SNAPPER_CONFIGS=(
+    "root:/"
+    "home:/home"
+)
+
 step "Configuring Snapper"
 
-# archinstall already ran snapper create-config — just verify it's there
-snapper -c root list &>/dev/null || fail "Snapper 'root' config not found. Was it configured by archinstall?"
+for entry in "${SNAPPER_CONFIGS[@]}"; do
+    cfg="${entry%%:*}"
+    mnt="${entry##*:}"
 
-info "Tuning Snapper limits..."
-snapper -c root set-config \
-    ALLOW_USERS="$REAL_USER" \
-    TIMELINE_CREATE=yes \
-    TIMELINE_CLEANUP=yes \
-    TIMELINE_LIMIT_HOURLY=5 \
-    TIMELINE_LIMIT_DAILY=7 \
-    TIMELINE_LIMIT_WEEKLY=0 \
-    TIMELINE_LIMIT_MONTHLY=0 \
-    TIMELINE_LIMIT_YEARLY=0 \
-    NUMBER_LIMIT=10 \
-    NUMBER_CLEANUP=yes
+    if snapper -c "$cfg" list &>/dev/null; then
+        info "Snapper '$cfg' config already exists, skipping create-config."
+    else
+        info "Running snapper create-config for '$cfg' ($mnt)..."
+        # For root: /.snapshots may already be mounted — handle the ArchWiki procedure
+        if [[ "$cfg" == "root" ]] && mountpoint -q /.snapshots; then
+            umount /.snapshots
+            snapper -c root create-config /
+            btrfs subvolume delete /.snapshots
+            mkdir -p /.snapshots
+            mount -a
+        else
+            snapper -c "$cfg" create-config "$mnt"
+        fi
+        info "Snapper '$cfg' create-config done."
+    fi
+
+    info "Tuning '$cfg' snapper limits..."
+    snapper -c "$cfg" set-config \
+        ALLOW_USERS="$REAL_USER" \
+        TIMELINE_CREATE=yes \
+        TIMELINE_CLEANUP=yes \
+        TIMELINE_LIMIT_HOURLY=5 \
+        TIMELINE_LIMIT_DAILY=7 \
+        TIMELINE_LIMIT_WEEKLY=0 \
+        TIMELINE_LIMIT_MONTHLY=0 \
+        TIMELINE_LIMIT_YEARLY=0 \
+        NUMBER_LIMIT=10 \
+        NUMBER_CLEANUP=yes
+done
 
 systemctl enable --now snapper-timeline.timer
 systemctl enable --now snapper-cleanup.timer
 
-success "Snapper configured."
+success "Snapper configured for: ${SNAPPER_CONFIGS[*]%%:*}"
 
 # =============================================================================
 #  STEP 3 — mkinitcpio: add overlayfs hook
@@ -266,8 +301,8 @@ echo "  Already present (via archinstall):"
 echo "    ✔ snapper                (snapshot manager)"
 echo ""
 echo "  Services enabled:"
-echo "    ✔ snapper-timeline.timer"
-echo "    ✔ snapper-cleanup.timer"
+echo "    ✔ snapper-timeline.timer (${SNAPPER_CONFIGS[*]%%:*})"
+echo "    ✔ snapper-cleanup.timer  (${SNAPPER_CONFIGS[*]%%:*})"
 echo "    ✔ limine-snapper-sync.service"
 echo ""
 echo "  Useful commands:"
