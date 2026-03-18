@@ -114,6 +114,19 @@ else
     ERRORS=$(( ERRORS + 1 ))
 fi
 
+# Detect limine.conf — search relative to the ESP first, then common fallbacks
+ESP=$(bootctl --print-esp-path 2>/dev/null || true)
+LIMINE_DIR=""
+for candidate in "$ESP/limine" "$ESP" /boot/limine /boot/efi /boot /efi; do
+    if [[ -f "$candidate/limine.conf" ]]; then
+        LIMINE_DIR="$candidate"
+        echo -e "  ${GREEN}✔${RESET} limine.conf found in $LIMINE_DIR"
+        break
+    fi
+done
+if [[ -z "$LIMINE_DIR" ]]; then
+    echo -e "  ${RED}✘${RESET} limine.conf not found (ESP: ${ESP:-unknown}, also checked common paths)"
+    ERRORS=$(( ERRORS + 1 ))
 fi
 
 echo -e "  ${GREEN}✔${RESET} Invoking user  : $REAL_USER"
@@ -125,6 +138,7 @@ echo ""
 echo -e "${BOLD}Detected configuration:${RESET}"
 echo "  Btrfs device    : $BTRFS_DEV"
 echo "  Snapshots subvol: $SNAP_SUBVOL"
+echo "  Limine conf dir : $LIMINE_DIR"
 echo "  Invoking user   : $REAL_USER"
 echo ""
 
@@ -134,7 +148,7 @@ echo ""
 step "Installing packages"
 
 info "Installing snap-pac from official repos..."
-pacman -S --needed --noconfirm snapper snap-pac
+pacman -S --needed --noconfirm snap-pac
 
 info "Installing limine-snapper-sync and limine-mkinitcpio-hook from AUR..."
 sudo -u "$REAL_USER" yay -S --needed --noconfirm \
