@@ -3,7 +3,7 @@
 echo "Installing coding languages and tools"
 yay -S --noconfirm --needed \
   git neovim lazygit git-delta  \
-  nodejs npm go hugo
+  nodejs npm go hugo just
 
 echo "Creating Project directories"
 mkdir -p ~/Projects/personal
