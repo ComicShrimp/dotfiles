@@ -1,5 +1,6 @@
 return {
-  "ThePrimeagen/99",
+  "ComicShrimp/99",
+  branch = "main",
   dependencies = {
     "nvim-telescope/telescope.nvim",
   },
