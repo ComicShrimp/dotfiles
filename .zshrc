@@ -38,6 +38,9 @@ source $HOME/.config/zinit/zinit.zsh
 # Load starship
 eval "$(starship init zsh)"
 
+# Load zoxide
+eval "$(zoxide init zsh --cmd cd)"
+
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
