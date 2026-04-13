@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  event = "BufWritePre",
   opts = {
     log_level = vim.log.levels.DEBUG,
     formatters_by_ft = {
