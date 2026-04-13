@@ -1,10 +1,9 @@
 return {
   "mfussenegger/nvim-lint",
   events = { "BufWritePost", "BufReadPost", "InsertLeave" },
+  opts = {},
   config = function()
-    local lint = require("lint")
-
-    lint.linters_by_ft = {
+    require("lint").linters_by_ft = {
       dockerfile = { "hadolint" },
       javascript = { "eslint_d" },
       typescript = { "eslint_d" },
@@ -14,9 +13,12 @@ return {
       python = { "ruff", "mypy" },
       go = { "golangcilint" },
     }
-
-    vim.keymap.set("n", "<leader>cl", function()
-      lint.try_lint()
-    end, { desc = "Trigger linting for current file" })
   end,
+  keys = {
+    {
+      "<leader>cl",
+      function() require("lint").try_lint() end,
+      desc = "Trigger linting for current file",
+    },
+  },
 }

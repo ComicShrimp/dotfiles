@@ -8,14 +8,8 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", { "nvim-telescope/telescope-fzf-native.nvim", build = "make" } },
     config = function()
       local telescope = require("telescope")
-      local telescopeConfig = require("telescope.config")
-
-      -- Clone the default Telescope configuration
-      local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
-
-      -- I want to search in hidden/dot files.
+      local vimgrep_arguments = { unpack(require("telescope.config").values.vimgrep_arguments) }
       table.insert(vimgrep_arguments, "--hidden")
-      -- I don't want to search in the `.git` directory.
       table.insert(vimgrep_arguments, "--glob")
       table.insert(vimgrep_arguments, "!**/.git/*")
 
@@ -25,32 +19,28 @@ return {
             n = { ["<C-t>"] = require("trouble.sources.telescope").open },
             i = { ["<C-t>"] = require("trouble.sources.telescope").open },
           },
-          -- `hidden = true` is not supported in text grep commands.
           vimgrep_arguments = vimgrep_arguments,
           path_display = { "smart" },
-          layout_config = {
-            prompt_position = "top",
-          },
+          layout_config = { prompt_position = "top" },
           sorting_strategy = "ascending",
         },
         pickers = {
           find_files = {
-            -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
             find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
           },
         },
-        extensions = {
-          fzf = {},
-        },
+        extensions = { fzf = {} },
       })
 
-      require("telescope").load_extension("fzf")
-
-      local builtin = require("telescope.builtin")
-
-      vim.keymap.set("n", "<leader>cd", builtin.diagnostics, { desc = "Code diagnostics" })
-
-      require("telescope").load_extension("ui-select")
+      telescope.load_extension("fzf")
+      telescope.load_extension("ui-select")
     end,
+    keys = {
+      {
+        "<leader>cd",
+        function() require("telescope.builtin").diagnostics() end,
+        desc = "Code diagnostics",
+      },
+    },
   },
 }
