@@ -115,6 +115,13 @@ return {
       end,
       desc = "Undo Tree",
     },
+    {
+      "<leader>cd",
+      function()
+        Snacks.picker.diagnostics()
+      end,
+      desc = "Open Diagnostics",
+    },
     -- Experimental
     {
       "<leader>sb",
