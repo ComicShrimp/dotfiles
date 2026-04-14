@@ -1,5 +1,4 @@
 return {
-  -- Required to auto load configs for Lsps
   {
     "neovim/nvim-lspconfig",
     lazy = false,
@@ -19,35 +18,16 @@ return {
       },
     },
     config = function()
-      -- Packages Setup
-      local lsp_to_install = {
-        "lua_ls",
-        "gopls",
-        "eslint",
-        "vtsls",
-        "tailwindcss",
-        "rust_analyzer",
-        "zls",
-        "dockerls",
-        "docker_compose_language_service",
-        "vuels",
-        "jsonls",
-        "pyright",
-      }
+      local mr = require("mason-registry")
 
-      -- Packages to install
-      local mason_tools = {
-        -- Docker
+      for _, tool in ipairs({
         "hadolint",
-        -- JS/TS
         "eslint_d",
         "prettier",
         "js-debug-adapter",
-        -- Python
         "mypy",
         "ruff",
         "pyright",
-        -- Go
         "goimports",
         "gofumpt",
         "golines",
@@ -55,33 +35,32 @@ return {
         "impl",
         "golangci-lint-langserver",
         "golangci-lint",
-        -- Lua
         "stylua",
-        -- Others
-        "marksman", -- Markdown
-        -- Tree Siter
+        "marksman",
         "tree-sitter-cli",
-      }
-
-      -- Mason Setup
-      require("mason").setup()
-
-      local mr = require("mason-registry")
-
-      local function ensure_installed()
-        for _, tool in ipairs(mason_tools) do
-          local p = mr.get_package(tool)
-          if not p:is_installed() then
-            p:install()
-          end
+      }) do
+        local p = mr.get_package(tool)
+        if not p:is_installed() then
+          p:install()
         end
       end
 
-      ensure_installed()
-
       require("mason-lspconfig").setup({
         automatic_enable = true,
-        ensure_installed = lsp_to_install,
+        ensure_installed = {
+          "lua_ls",
+          "gopls",
+          "eslint",
+          "vtsls",
+          "tailwindcss",
+          "rust_analyzer",
+          "zls",
+          "dockerls",
+          "docker_compose_language_service",
+          "vuels",
+          "jsonls",
+          "pyright",
+        },
       })
     end,
   },
