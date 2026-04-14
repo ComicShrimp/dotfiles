@@ -6,3 +6,6 @@
 
 # Portainer config
 .config/containers/*
+
+# Add dev plugin to gitignore
+**/plugins/dev.lua
