@@ -1,17 +1,5 @@
-vim.lsp.enable({
-  "lua_ls",
-  "gopls",
-  "eslint",
-  "vtsls",
-  "tailwindcss",
-  "rust_analyzer",
-  "zls",
-  "dockerls",
-  "docker_compose_language_service",
-  "vuels",
-  "jsonls",
-  "pyright",
-})
+-- The config `vim.lsp.enable({})` is not necessary
+-- LSP servers are enabled automatically via mason-lspconfig (automatic_enable = true)
 
 vim.diagnostic.config({
   -- virtual_lines = true,

@@ -27,7 +27,6 @@ return {
         "js-debug-adapter",
         "mypy",
         "ruff",
-        "pyright",
         "goimports",
         "gofumpt",
         "golines",
