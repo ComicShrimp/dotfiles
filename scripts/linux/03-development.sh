@@ -8,4 +8,5 @@ yay -S --noconfirm --needed \
 echo "Creating Project directories"
 mkdir -p ~/Projects/personal
 mkdir -p ~/Projects/work
+mkdir -p ~/Projects/plugins
 
