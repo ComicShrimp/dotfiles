@@ -67,13 +67,6 @@ return {
       desc = "Show notification history",
     },
     {
-      "<leader>fu",
-      function()
-        Snacks.picker.undo()
-      end,
-      desc = "Undo",
-    },
-    {
       "<leader>ff",
       function()
         Snacks.picker.files({ hidden = true })
@@ -116,7 +109,7 @@ return {
       desc = "Undo Tree",
     },
     {
-      "<leader>cd",
+      "<leader>fd",
       function()
         Snacks.picker.diagnostics()
       end,

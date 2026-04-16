@@ -1,30 +1,6 @@
 return {
   "saghen/blink.cmp",
   event = { "InsertEnter", "CmdlineEnter" },
-  dependencies = {
-    {
-      "saghen/blink.compat",
-      -- use v2.* for blink.cmp v1.*
-      version = "2.*",
-      -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
-      lazy = true,
-      -- make sure to set opts so that lazy.nvim calls blink.compat's setup
-      opts = {},
-    },
-    {
-      "L3MON4D3/LuaSnip",
-      -- follow latest release.
-      version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-      -- install jsregexp (optional!).
-      build = "make install_jsregexp",
-    },
-    {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
-    },
-  },
   version = "1.*",
 
   ---@module 'blink.cmp'
@@ -56,7 +32,8 @@ return {
         draw = {
           columns = {
             { "kind_icon" },
-            { "label", "label_description", "kind", gap = 1 },
+            { "label", "label_description", gap = 1 },
+            { "kind", "source_name", gap = 1 },
           },
         },
       },

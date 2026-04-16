@@ -4,6 +4,7 @@ vim.o.foldtext = "v:lua.CustomFoldText()"
 
 -- Set window options
 vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 function CustomFoldText()
   local fs = vim.v.foldstart
