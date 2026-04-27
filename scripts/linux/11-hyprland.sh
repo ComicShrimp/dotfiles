@@ -5,4 +5,5 @@ yay -S --noconfirm --needed \
   waybar rofi \
   hyprpaper hypridle hyprlock hyprshutdown \
   xdg-desktop-portal-hyprland \
-  brightnessctl playerctl
+  brightnessctl playerctl \
+  swayosd hyprlock hypridle
