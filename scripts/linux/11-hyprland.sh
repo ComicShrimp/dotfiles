@@ -6,4 +6,4 @@ yay -S --noconfirm --needed \
   hyprpaper hypridle hyprlock hyprshutdown \
   xdg-desktop-portal-hyprland \
   brightnessctl playerctl \
-  swayosd hyprlock hypridle
+  swayosd hyprlock hypridle hyprpaper
