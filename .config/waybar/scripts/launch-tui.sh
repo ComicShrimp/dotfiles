@@ -1,2 +1,2 @@
 #!/bin/sh
-ghostty --app-id=tui-popup -e "$1"
+ghostty --title=tui-popup -e "$1"
