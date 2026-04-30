@@ -7,5 +7,4 @@ yay -S --noconfirm --needed \
   xdg-desktop-portal-hyprland \
   brightnessctl playerctl \
   swayosd hyprlock hypridle hyprpaper \
-  bluetui \
-  xdg-terminal-exec
+  bluetui
