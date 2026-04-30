@@ -14,6 +14,7 @@
     "mpd",
     "idle_inhibitor",
     "pulseaudio",
+    "bluetooth",
     "network",
     "power-profiles-daemon",
     "cpu",
@@ -163,6 +164,15 @@
       "power-saver": ""
     }
   },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-connected": "󰂱",
+    "format-disabled": "󰂲",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "~/.config/waybar/scripts/launch-tui.sh bluetui"
+  },
   "network": {
     "format-icons": [
       "󰤯",
@@ -180,7 +190,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "ghostty -e impala"
+    "on-click": "~/.config/waybar/scripts/launch-tui.sh impala"
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
