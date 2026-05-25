@@ -11,6 +11,10 @@ return {
     },
     routes = {
       {
+        filter = { event = "lsp", kind = "progress" },
+        opts = { skip = true },
+      },
+      {
         filter = {
           event = "msg_show",
           any = {

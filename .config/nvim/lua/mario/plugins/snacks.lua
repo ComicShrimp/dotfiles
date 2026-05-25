@@ -14,7 +14,12 @@ return {
     dashboard = { enabled = true },
     input = { enabled = true },
     words = { enabled = true },
-    notifier = { enabled = true },
+    notifier = {
+      enabled = true,
+      filter = function(notif)
+        return notif.title ~= "pyright" and notif.title ~= "basedpyright"
+      end,
+    },
     scroll = { enabled = true },
     statuscolumn = {
       left = { "mark", "sign" }, -- priority of signs on the left (high to low)
