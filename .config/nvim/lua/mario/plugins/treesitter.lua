@@ -49,8 +49,8 @@ return {
         "yaml",
         "zig",
       },
-      highlight = { enable = false },
-      indent = { enable = false },
+      highlight = { enable = true },
+      indent = { enable = true },
     })
   end,
 }
