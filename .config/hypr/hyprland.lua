@@ -48,6 +48,7 @@ local runner = "rofi -show run"
 --
 hl.on("hyprland.start", function()
   hl.exec_cmd("waybar")
+  hl.exec_cmd("playerctld daemon")
   hl.exec_cmd("systemctl --user start hyprpolkitagent")
 end)
 
@@ -266,7 +267,7 @@ hl.bind(
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
--- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
+hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit")) -- dwindle only
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))

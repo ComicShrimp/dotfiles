@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Base Packages
 yay -S --noconfirm --needed \
   waybar rofi \
   mako nautilus pavucontrol \
@@ -8,8 +9,11 @@ yay -S --noconfirm --needed \
   brightnessctl playerctl \
   nwg-look gnome-themes-extra qt6ct
 
+# Waybar nice to have
+yay -S --noconfirm --needed \
+  python-setuptools zscroll
+
 yay -S --noconfirm --needed \
   hyprpaper hypridle hyprlock hyprshutdown \
-  brightnessctl playerctl \
   swayosd hyprlock hypridle hyprpaper \
   bluetui
