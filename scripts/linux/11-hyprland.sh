@@ -13,6 +13,7 @@ yay -S --noconfirm --needed \
 yay -S --noconfirm --needed \
   python-setuptools zscroll
 
+# Lock and wallpaper
 yay -S --noconfirm --needed \
   hyprpaper hypridle hyprlock hyprshutdown \
   swayosd hyprlock hypridle hyprpaper \
