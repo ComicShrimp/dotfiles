@@ -7,7 +7,7 @@ yay -S --noconfirm --needed \
   xdg-desktop-portal-hyprland \
   hyprpolkitagent qt5-wayland qt6-wayland \
   brightnessctl playerctl \
-  nwg-look gnome-themes-extra qt6ct
+  gnome-themes-extra kvantum-qt5
 
 # Waybar nice to have
 yay -S --noconfirm --needed \
