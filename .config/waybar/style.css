@@ -105,3 +105,10 @@ tooltip label {
   color: @dark-5;
   font-size: 0.8em;
 }
+
+#custom-powermenu {
+  border-radius: 0.4em;
+  padding: 0.05em 0.4em;
+  background: @dark-8;
+  margin: 0.05em 0.5em 0.05em 0em;
+}

@@ -14,7 +14,8 @@
     "bluetooth",
     "network",
     "cpu",
-    "memory"
+    "memory",
+    "custom/powermenu"
   ],
   "hyprland/window": {
     "max-length": 50
@@ -138,6 +139,11 @@
   "custom/media-animation": {
     "exec": "~/.config/waybar/custom_modules/media/media-animation.sh",
     "tooltip": false
+  },
+  "custom/powermenu": {
+    "format": "⏻",
+    "tooltip": false,
+    "on-click": "exec ~/.config/waybar/custom_modules/powermenu.sh"
   },
   "custom/media-time": {
     "exec": "~/.config/waybar/custom_modules/media/media-time.sh",

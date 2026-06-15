@@ -44,6 +44,7 @@ local runner = "rofi -show run"
 -- waybar and hyprpolkitagent are managed by systemd (see scripts/linux/11-hyprland.sh)
 hl.on("hyprland.start", function()
   hl.exec_cmd("playerctld daemon")
+  hl.exec_cmd("hypridle")
 end)
 
 -------------------------------
