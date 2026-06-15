@@ -11,9 +11,15 @@
 }
 
 window#waybar {
-  background-color: @dark-9;
+  background-color: transparent;
   color: white;
   min-height: 0;
+}
+
+#workspaces {
+  border-radius: 0.4em;
+  background: @dark-8;
+  margin: 0.05em 0em 0.05em 0.5em;
 }
 
 #workspaces button {
@@ -36,7 +42,8 @@ window#waybar {
 #network,
 #cpu,
 #memory,
-#volume {
+#volume,
+#clock {
   border-radius: 0.4em;
   padding: 0.05em 0.4em;
   background: @dark-8;
