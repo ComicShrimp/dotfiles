@@ -41,15 +41,9 @@ local runner = "rofi -show run"
 ---- AUTOSTART ----
 -------------------
 
--- See https://wiki.hypr.land/Configuring/Basics/Autostart/
-
--- Autostart necessary processes (like notifications daemons, status bars, etc.)
--- Or execute your favorite apps at launch like this:
---
+-- waybar and hyprpolkitagent are managed by systemd (see scripts/linux/11-hyprland.sh)
 hl.on("hyprland.start", function()
-  hl.exec_cmd("waybar")
   hl.exec_cmd("playerctld daemon")
-  hl.exec_cmd("systemctl --user start hyprpolkitagent")
 end)
 
 -------------------------------
@@ -62,7 +56,8 @@ hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
 -- Theme and force wayland
-hl.env("GDK_BACKEND", "wayland,x11,*")
+-- hl.env("GDK_BACKEND", "wayland,x11,*")
+hl.env("GDK_BACKEND", "wayland,x11")
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")
 hl.env("QT_STYLE_OVERRIDE", "kvantum")
 hl.env("MOZ_ENABLE_WAYLAND", "1")
