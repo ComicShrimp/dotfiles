@@ -10,7 +10,7 @@
   "modules-right": [
     "hyprland/submap",
     "group/volume",
-    "battery",
+    "group/battery",
     "bluetooth",
     "network",
     "cpu",
@@ -20,9 +20,23 @@
   "hyprland/window": {
     "max-length": 50
   },
+  "group/battery": {
+    "orientation": "horizontal",
+    "modules": [
+      "battery",
+      "custom/power-profile"
+    ]
+  },
+  "custom/power-profile": {
+    "exec": "~/.config/waybar/custom_modules/power-profile.sh",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "~/.config/waybar/custom_modules/power-profile.sh cycle"
+  },
   "battery": {
-    "interval": 60,
+    "interval": 5,
     "format": "{capacity}% {icon}",
+    "on-click": "~/.config/waybar/custom_modules/power-profile.sh cycle",
     "format-icons": {
       "default": [
         "󰂎",
