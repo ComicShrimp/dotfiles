@@ -43,6 +43,7 @@ window#waybar {
 #cpu,
 #memory,
 #volume,
+#mpris,
 #clock {
   border-radius: 0.4em;
   padding: 0.05em 0.4em;
@@ -94,24 +95,10 @@ tooltip label {
   color: white;
 }
 
-#media {
-  color: #42ff9f;
+#mpris {
   margin: 0.05em 0em 0.05em 4em;
 }
 
-#custom-media-animation {
-  font-size: 0.65em;
-  margin-right: 0.5em;
-}
-
-#custom-media-now-playing {
-  margin-right: 0.5em;
-}
-
-#custom-media-time {
-  color: @dark-5;
-  font-size: 0.8em;
-}
 
 #custom-powermenu {
   border-radius: 0.4em;
