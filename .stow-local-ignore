@@ -32,3 +32,8 @@ install_linux.sh
 install_mac.sh
 Install.sh
 /scripts
+
+# Nix
+.*\.nix$
+^flake\.lock$
+/hosts
