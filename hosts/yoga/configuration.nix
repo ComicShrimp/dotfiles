@@ -5,22 +5,41 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Enable Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 0;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Quiet boot for plymouth
+  boot.kernelParams = [
+    "quiet"
+    "rd.udev.log_level=3"
+    "rd.systemd.show_status=auto"
+  ];
 
-  boot.initrd.luks.devices."luks-db686937-682c-4e74-a7dd-429ac085c510".device = "/dev/disk/by-uuid/db686937-682c-4e74-a7dd-429ac085c510";
+  boot.initrd.luks.devices."luks-db686937-682c-4e74-a7dd-429ac085c510".device =
+    "/dev/disk/by-uuid/db686937-682c-4e74-a7dd-429ac085c510";
+  boot.initrd.verbose = false;
+  boot.consoleLogLevel = 3;
+
+  boot.plymouth = {
+    enable = true;
+    theme = "bgrt";
+  };
+
   networking.hostName = "yoga"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -92,11 +111,14 @@
   users.users."mario" = {
     isNormalUser = true;
     description = "Mario";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -111,19 +133,30 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     git
-     stow
-     neovim
-     lazygit
-     nodejs
-     ghostty
-     zsh
-     starship
-     zoxide
-     fzf
-     nerd-fonts.jetbrains-mono
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    git
+    stow
+    neovim
+    lazygit
+    nodejs
+    ghostty
+    zsh
+    starship
+    zoxide
+    fzf
+    nerd-fonts.jetbrains-mono
+    go
+    tmux
+    plymouth
+    # Nvim
+    # Nvim | Base
+    tree-sitter
+    # Nvim | Lint
+    statix
+    nixfmt
+    # Nvim | LSP
+    nil
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

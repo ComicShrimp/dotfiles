@@ -16,6 +16,7 @@ return {
       lua = { "stylua" },
       go = { "goimports", "gofumpt", "golines" },
       python = { "ruff_fix", "ruff_format" },
+      nix = { "nixfmt" },
     },
     format_on_save = {
       lsp_format = "fallback",

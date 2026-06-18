@@ -37,6 +37,9 @@ return {
         "stylua",
         "marksman",
         "tree-sitter-cli",
+        "nixfmt",
+        "nil",
+        "statix",
       }) do
         local p = mr.get_package(tool)
         if not p:is_installed() then
