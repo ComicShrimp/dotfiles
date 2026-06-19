@@ -16,28 +16,38 @@
     "flakes"
   ];
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 0;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      timeout = 0;
+    };
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  # Quiet boot for plymouth
-  boot.kernelParams = [
-    "quiet"
-    "rd.udev.log_level=3"
-    "rd.systemd.show_status=auto"
-  ];
+    # Use latest kernel.
+    kernelPackages = pkgs.linuxPackages_latest;
+    # Quiet boot for plymouth
+    kernelParams = [
+      "quiet"
+      "rd.udev.log_level=3"
+      "rd.systemd.show_status=auto"
+    ];
 
-  boot.initrd.luks.devices."luks-db686937-682c-4e74-a7dd-429ac085c510".device =
-    "/dev/disk/by-uuid/db686937-682c-4e74-a7dd-429ac085c510";
-  boot.initrd.verbose = false;
-  boot.consoleLogLevel = 3;
+    initrd.luks.devices."luks-db686937-682c-4e74-a7dd-429ac085c510".device =
+      "/dev/disk/by-uuid/db686937-682c-4e74-a7dd-429ac085c510";
+    initrd.verbose = false;
+    consoleLogLevel = 3;
 
-  boot.plymouth = {
-    enable = true;
-    theme = "bgrt";
+    plymouth = {
+      enable = true;
+      theme = "bgrt";
+    };
   };
 
   networking.hostName = "yoga"; # Define your hostname.
@@ -70,7 +80,7 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  services.xserver.enable = false;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -80,6 +90,16 @@
   services.xserver.xkb = {
     layout = "br";
     variant = "";
+  };
+
+  # Podman
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
+    };
   };
 
   # Configure console keymap
@@ -114,18 +134,17 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "podman"
     ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
-  programs.zsh.enable = true;
-  programs.zoxide.enable = true;
+  programs = {
+    firefox.enable = true;
+    zsh.enable = true;
+    zoxide.enable = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -133,7 +152,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     git
     stow
@@ -149,6 +168,17 @@
     go
     tmux
     plymouth
+    delta
+    podman
+    podman-compose
+    ripgrep
+    eza
+    bat
+    obsidian
+    google-chrome
+    btop
+    vlc
+    kiro-cli
     # Nvim
     # Nvim | Base
     tree-sitter
