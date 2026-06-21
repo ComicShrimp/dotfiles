@@ -178,7 +178,7 @@
     google-chrome
     btop
     vlc
-    kiro-cli
+    github-copilot-cli
     # Nvim
     # Nvim | Base
     tree-sitter
