@@ -151,6 +151,12 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
+  # Make GTK use its simple IM implementation to enable compose/dead keys in ghostty
+  environment.sessionVariables = {
+    GTK_IM_MODULE = "simple";
+  };
+
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -185,8 +191,33 @@
     # Nvim | Lint
     statix
     nixfmt
-    # Nvim | LSP
+    # Nvim | LSP - Language Servers
     nil
+    lua-language-server
+    gopls
+    eslint_d
+    vtsls
+    tailwindcss-language-server
+    rust-analyzer
+    zls
+    dockerfile-language-server
+    docker-compose-language-service
+    pyright
+    # Nvim | Formatters & Linters
+    hadolint
+    prettier
+    mypy
+    ruff
+    gotools
+    gofumpt
+    golines
+    gomodifytags
+    impl
+    golangci-lint
+    stylua
+    marksman
+    # Nvim | Debuggers
+    vscode-js-debug
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

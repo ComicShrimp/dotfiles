@@ -20,7 +20,8 @@ return {
     config = function()
       local mr = require("mason-registry")
 
-      for _, tool in ipairs({
+      -- Tools to install only if not already in PATH
+      local tools = {
         "hadolint",
         "eslint_d",
         "prettier",
@@ -40,16 +41,22 @@ return {
         "nixfmt",
         "nil",
         "statix",
-      }) do
+      }
+
+      for _, tool in ipairs(tools) do
         local p = mr.get_package(tool)
-        if not p:is_installed() then
+        -- Only install if not already installed AND not found in system PATH
+        if not p:is_installed() and vim.fn.executable(tool) == 0 then
           p:install()
         end
       end
 
       require("mason-lspconfig").setup({
         automatic_enable = true,
-        ensure_installed = {
+        -- Only install servers not already available in PATH
+        ensure_installed = vim.tbl_filter(function(server)
+          return vim.fn.executable(server) == 0
+        end, {
           "lua_ls",
           "gopls",
           "eslint",
@@ -62,7 +69,7 @@ return {
           "vuels",
           "jsonls",
           "pyright",
-        },
+        }),
       })
     end,
   },
