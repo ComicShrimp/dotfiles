@@ -185,6 +185,8 @@
     btop
     vlc
     github-copilot-cli
+    asunder
+    picard
     # Nvim
     # Nvim | Base
     tree-sitter
