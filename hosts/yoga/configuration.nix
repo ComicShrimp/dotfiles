@@ -84,16 +84,6 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  # Podman
-  virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
-    };
-  };
-
   services = {
 
     # Configure keymap in X11
