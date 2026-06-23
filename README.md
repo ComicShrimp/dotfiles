@@ -1,57 +1,14 @@
 # dotfiles
 
-## Requirements
+My personal dotfiles for NixOS configuration management.
 
-### Arch Linux
+## Installation
 
-This repo assumes you will install Arch Linux using `archinstall` and set the partition layout manually, since is needed to set the correct subvolumes for system snapshots.
+Clone this repo in the `$HOME` directory and run `stow` to symlink the dotfiles.
 
-## Disk Layout
+## NixOS Hosts
 
-For `snapper` config with `limine` and `btrfs` you need the following subvolumes and disk layout:
-
-### Btrfs Subvolume Layout
-
-| Subvolume | Mount point |
-|-----------|-------------|
-| `@` | `/` |
-| `@home` | `/home` |
-| `@snapshots` | `/.snapshots` |
-| `@log` | `/var/log` |
-| `@pkg` | `/var/cache/pacman/pkg` |
-| `@tmp` | `/tmp` |
-
-### Boot Partition
-
-| Partition | Filesystem | Size | Mount point |
-|-----------|------------|------|-------------|
-| EFI | FAT32 | 512MB | `/boot/efi` |
-
-## Snapper
-
-Should select `snapper` as snapshot tool in `archinstall`.
-
-## Instalation
-
-Clone this repo in the `home` (`$HOME`) directory and run the following command to install the dotfiles.
-
-```shell
-stow .
-```
-
-After this, run the install script for your respective system:
-
-MacOs:
-
-```shell
-sh install_mac.sh
-```
-
-Linux:
-
-```shell
-sh install_linux.sh
-```
+See [`hosts/README.md`](./hosts/README.md) for information on configuring and adding new NixOS hosts using the modularized configuration system.
 
 ## Set Zsh as default shell
 
