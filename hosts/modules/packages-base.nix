@@ -55,6 +55,7 @@
     # Audio & system
     asunder
     picard
+    orca-slicer
 
     # Utilities
     podman
