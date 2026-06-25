@@ -14,6 +14,7 @@
     ../modules/packages-base.nix
     ../modules/packages-nvim.nix
     ../modules/plasma-desktop.nix
+    ../modules/hyprland.nix
   ];
 
   # Enable Flakes
