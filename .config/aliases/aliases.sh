@@ -17,7 +17,7 @@ alias ls='ls --color'
 # alias yayu="yay -Syu" # Update system
 
 # Nix
-alias nfu="nix flake update"
+alias nfu="sudo nix flake update"
 alias nfs="sudo nixos-rebuild switch --flake"
 
 # Flatpak
