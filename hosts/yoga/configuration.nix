@@ -17,17 +17,13 @@
     ../modules/hyprland.nix
   ];
 
+  nix.
+
   # Enable Flakes
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
 
   # Bootloader.
   boot = {

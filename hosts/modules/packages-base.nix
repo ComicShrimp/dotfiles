@@ -72,4 +72,18 @@
       defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
     };
   };
+
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+
+    # Optmize storage
+    settings = {
+      auto-optimise-store = true;
+    };
+  };
+
 }
