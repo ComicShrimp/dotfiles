@@ -23,6 +23,8 @@
     "flakes"
   ];
 
+  services.fwupd.enable = true;
+
   # Bootloader.
   boot = {
     loader = {
