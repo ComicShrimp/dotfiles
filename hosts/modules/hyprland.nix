@@ -17,6 +17,14 @@
     waybar
     rofi
     nautilus
+    # Media and feedback
     swayosd
+    brightnessctl
+    playerctl
+    # Lock and Wallpaper
+    hypridle
+    hyprpaper
+    hyprlock
+    hyprshutdown
   ];
 }
