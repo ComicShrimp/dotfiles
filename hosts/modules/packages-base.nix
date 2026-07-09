@@ -61,6 +61,7 @@
     podman
     podman-compose
     github-copilot-cli
+    ente-auth
   ];
 
   # Podman
