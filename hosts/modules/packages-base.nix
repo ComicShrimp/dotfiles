@@ -40,6 +40,7 @@
     # Development
     nodejs
     go
+    uv
 
     # Fonts
     nerd-fonts.jetbrains-mono
