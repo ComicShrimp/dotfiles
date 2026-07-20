@@ -34,7 +34,6 @@ return {
         "gomodifytags",
         "impl",
         "golangci-lint-langserver",
-        "golangci-lint",
         "stylua",
         "marksman",
         "tree-sitter-cli",
