@@ -23,6 +23,7 @@
     dockerfile-language-server
     docker-compose-language-service
     pyright
+    golangci-lint-langserver
 
     # Nvim | Formatters & Linters
     hadolint

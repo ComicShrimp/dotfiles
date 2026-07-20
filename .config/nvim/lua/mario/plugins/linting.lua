@@ -11,7 +11,6 @@ return {
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       python = { "ruff" },
-      go = { "golangcilint" },
       nix = { "statix" },
     }
 
@@ -24,7 +23,9 @@ return {
   keys = {
     {
       "<leader>cl",
-      function() require("lint").try_lint() end,
+      function()
+        require("lint").try_lint()
+      end,
       desc = "Trigger linting for current file",
     },
   },
