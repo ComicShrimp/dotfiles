@@ -31,6 +31,7 @@
     bat
     delta
     eza
+    just
 
     # Shells & tools
     zsh
