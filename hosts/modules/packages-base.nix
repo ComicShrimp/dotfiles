@@ -42,6 +42,7 @@
     nodejs
     go
     uv
+    air
 
     # Fonts
     nerd-fonts.jetbrains-mono
