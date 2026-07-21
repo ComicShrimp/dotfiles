@@ -43,6 +43,7 @@
     go
     uv
     air
+    gcc
 
     # Fonts
     nerd-fonts.jetbrains-mono
