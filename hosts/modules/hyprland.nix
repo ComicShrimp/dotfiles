@@ -15,6 +15,7 @@
 
   environment.systemPackages = with pkgs; [
     waybar
+    quickshell
     rofi
     nautilus
     # Media and feedback
